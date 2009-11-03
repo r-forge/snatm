@@ -10,12 +10,12 @@
 \title{Find e-mail and real name aliases}
 \description{Find e-mail and real name aliases and replace them in result of \code{makeforest}.}
 \usage{
-\item{normalizeauthors(authors)}
-\item{sortnames(x)}
-\item{emailfirst(y)}
-\item{changenames(clusters,forest,accept=1:length(take.memory))}
-\item{findclusters(v,distance=0.3,not.take.memory)}
-\item{final(d)}
+normalizeauthors(authors)
+sortnames(x)
+emailfirst(y)
+changenames(clusters,forest,accept=1:length(take.memory))
+findclusters(v,distance=0.3,not.take.memory)
+final(d)
 }
 \arguments{
 \item{authors}{A character vector of author names including e-mail adresses (third column of result of \code{makeforest}).}

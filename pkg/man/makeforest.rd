@@ -6,6 +6,7 @@
 \usage{makeforest(month,list)}
 \arguments{
 \item{month}{A character string containing the year and month to be analyzed in the form \code{"January-2008"}.}
+}
 \value{A matrix with a maximum of five columns.
 First column contains the e-mail ID numbered consecutively in chronological order.
 Second column contains the thread ID gained from \code{threads(tm.plugin.mail)}.

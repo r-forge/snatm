@@ -10,6 +10,7 @@
 a different order. \code{network} will be permuted in such a way that \code{rownames(network)} and \code{colnames(network)}
 are identical to \code{namesequence}.
 }
+}
 \value{A permuted adjacency matrix where \code{rownames(network)} and \code{colnames(network)} are identical to \code{namesequence}.}
 \author{Angela Bohn \email{angela.bohn at gmail.com}}
 \examples{
