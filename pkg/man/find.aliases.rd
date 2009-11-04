@@ -42,19 +42,18 @@ The list has to be manually checked.}
 \item{final}{A character vector. Insert it into third column of result of \code{makeforest}.}
 }
 \details{
-\item{normalizeauthors}{Discard bounces, e-mail domains, companies or locations in paratheses, middle names, titles, and some numbers}
-\item{sortnames}{Isolate firest name, last name, and e-mail name.}
-\item{emailfirst}{Write e-mail name first, then "|", then real name.}
-\item{changenames}{Load dataset of already accepted aliases first (\code{take.memory.rda}).
+\code{normalizeauthors}{Discard bounces, e-mail domains, companies or locations in paratheses, middle names, titles, and some numbers}
+\code{sortnames}{Isolate firest name, last name, and e-mail name.}
+\code{emailfirst}{Write e-mail name first, then "|", then real name.}
+\code{changenames}{Load dataset of already accepted aliases first (\code{take.memory.rda}).
       Replace all aliases by a single name.}
-\item{findclusters}{Finds similar strings based on \code{base::agrep}. \code{changenames} has to be applied
+\code{findclusters}{Finds similar strings based on \code{base::agrep}. \code{changenames} has to be applied
     afterwards.}
-\item{final}{Some final transformations of author names.}
+\code{final}{Some final transformations of author names.}
 }
 \references{Based on Christian Bird, Alex Gourley, Prem Devanbu, Michael Gertz, and Anand Swaminathan.
   Mining Email Social Networks. 2006.
   In Proceedings of the 2006 international workshop on Mining software repositories, Shanghai, China.
   Pages 137-143. \url{http://macbeth.cs.ucdavis.edu/msr06.pdf}
-}
 }
 \author{Angela Bohn \email{angela.bohn at gmail.com}}
