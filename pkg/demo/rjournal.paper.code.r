@@ -183,8 +183,8 @@ write.graph(network_red_ig,file="rhelp/network_red_subjects_permuted.net",format
 clo <- read.table("rhelp/network_red_subjects_permuted_closeness.txt",skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
-betw <- igraph::betweenness(network_red_ig,directed=F)
-pr <- igraph::page.rank(network_red_ig,directed=F)$vector
+#betw <- igraph::betweenness(network_red_ig,directed=F)
+#pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
 save(centm,file="rhelp/network_red_subjects_permuted_centm.rda")
 
@@ -194,8 +194,8 @@ write.graph(network_red_ig,file="rhelp/network_red_content_permuted.net",format=
 clo <- read.table(file="rhelp/network_red_content_permuted_closeness.txt",skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
-betw <- igraph::betweenness(network_red_ig,directed=F)
-pr <- igraph::page.rank(network_red_ig,directed=F)$vector
+#betw <- igraph::betweenness(network_red_ig,directed=F)
+#pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
 save(centm,file="rhelp/network_red_content_permuted_centm.rda")
 
@@ -205,8 +205,8 @@ write.graph(network_red_ig,file="rdevel/network_red_subjects_permuted.net",forma
 clo <- read.table("rdevel/network_red_subjects_permuted_closeness.txt",skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
-betw <- igraph::betweenness(network_red_ig,directed=F)
-pr <- igraph::page.rank(network_red_ig,directed=F)$vector
+#betw <- igraph::betweenness(network_red_ig,directed=F)
+#pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
 save(centm,file="rdevel/network_red_subjects_permuted_centm.rda")
 
@@ -216,8 +216,8 @@ write.graph(network_red_ig,file="rdevel/network_red_content_permuted.net",format
 clo <- read.table("rdevel/network_red_content_permuted_closeness.txt",skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
-betw <- igraph::betweenness(network_red_ig,directed=F)
-pr <- igraph::page.rank(network_red_ig,directed=F)$vector
+#betw <- igraph::betweenness(network_red_ig,directed=F)
+#pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
 save(centm,file="rdevel/network_red_content_permuted_centm.rda")
 
