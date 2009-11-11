@@ -1,4 +1,4 @@
-makematrix <- function(edgelist,directed=TRUE,valued=TRUE,mode="multiple"){
+adjacency <- function(edgelist,directed=TRUE,valued=TRUE,mode="multiple"){
   if (!is.data.frame(edgelist)&!is.matrix(edgelist)){
     stop("Input data must be a matrix or dataframe with two columns.")
   }

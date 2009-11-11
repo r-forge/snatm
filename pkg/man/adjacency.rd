@@ -1,9 +1,9 @@
-\name{makematrix}
-\alias{makematrix}
+\name{adjacency}
+\alias{adjacency}
 \encoding{UTF-8}
 \title{Create an adjacency matrix from an edgelist}
 \description{Create an adjacency matrix from an edgelist.}
-\usage{makematrix(edgelist,directed=TRUE,valued=TRUE,mode="multiple")}
+\usage{adjacency(edgelist,directed=TRUE,valued=TRUE,mode="multiple")}
 \arguments{
 \item{edgelist}{A matrix with a minimum of three columns. Result of \code{createedges}.}
 \item{directed}{logical. \code{TRUE} (default) if the adjacency matrix should be directed (asymmetric) or
@@ -16,7 +16,4 @@
 }
 \value{A matrix representation of a network. Row names and column names contain names of nodes.}
 \author{Angela Bohn \email{angela.bohn at gmail.com}}
-\examples{
-edgelist <- rbind(c("PersonA","PersonB",)
-                 ,c())
 }

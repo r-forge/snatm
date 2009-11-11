@@ -1,5 +1,5 @@
 library(sna)
-gplot <-
+gplot.snatm <-
 function (dat, g = 1, gmode = "digraph", diag = FALSE, label = c(1:dim(dat)[2]),
     coord = NULL, jitter = TRUE, thresh = 0, usearrows = TRUE,
     mode = "fruchtermanreingold", displayisolates = TRUE, interactive = FALSE,

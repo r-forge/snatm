@@ -75,7 +75,7 @@ save(forest_corrected,file=paste(filename,"_forest_corrected.rda",sep=""))
 load(file=paste(filename,"_forest_corrected.rda",sep=""))
 commlist <- createedges(forest_corrected)
 save(commlist,file=paste(list,"/commlist_",list,".rda",sep=""))
-commnet <- makematrix(commlist) # might require a lot of working space
+commnet <- adjacency(commlist) # might require a lot of working space
 save(commnet,file=paste(list,"/commnet_",list,".rda",sep=""))
 
 
@@ -110,12 +110,11 @@ extract.commnet(forest_corrected,names(termfreq),apply.on=terms.from)
 load(file=paste(list,"/termfreq_",terms.from,".rda",sep=""))
 edgelist <- centrality.edgelist(terms=names(termfreq),apply.on=terms.from)
 save(edgelist,file=paste(list,"/peopleandterms_",terms.from,"_edgelist.rda",sep=""))
-net <- makematrix(edgelist,mode="addvalues",directed=F)
+net <- adjacency(edgelist,mode="addvalues",directed=F)
 save(net,file=paste(list,"/peopleandterms_",terms.from,"_net.rda",sep=""))
 
 
 # 2-mode plot
-# Take gplot from sna version 1.5! gplot from version 2.0-1 contains bugs.
 load(file="rhelp/peopleandterms_subjects_net.rda")
 load("rhelp/peopleandterms_subjects_edgelist.rda")
 peoplelist <- edgelist[,1]
@@ -134,7 +133,7 @@ people <- which(is.element(rownames(twomode),unique(peoplelist)))
 labelcol <- rep(rgb(0,0,1,0.75),dim(twomode)[1])
 labelcol[people] <- "red"
 par(mar=c(0,0,0,0))
-gplot(twomode
+gplot.snatm(twomode
      ,gmode="graph"
      ,vertex.col="white"
      ,vertex.cex=1
