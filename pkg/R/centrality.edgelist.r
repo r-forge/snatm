@@ -1,4 +1,4 @@
-centrality.edgelist <- function(terms,apply.on=c("subjects","content"),list=c("rhelp","rdevel")){
+centrality.edgelist <- function(terms,apply.to=c("subjects","content"),list=c("rhelp","rdevel")){
   edgelist <- c()
   for (i in seq_along(terms)){
     load(paste(list,"/",apply.on,"/net_",terms[i],".rda",sep=""))

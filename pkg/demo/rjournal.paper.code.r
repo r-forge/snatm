@@ -15,12 +15,12 @@ files <- c("2008-January.txt","2008-February.txt","2008-March.txt","2008-April.t
 # Download the mailing lists into folter "list"
 setInternet2(use = TRUE)
 for (i in files){
-  download.file(paste("https://stat.ethz.ch/pipermail/r-devel/",i,".gz",sep=""), paste(list,"/",i,sep=""))
+  download.file(paste("https://stat.ethz.ch/pipermail/r-devel/",i,".gz",sep=""), paste(file.path(list,i)))
 }
           
                     
 # Write all these e-mails in one file.
-filename <- paste(list,"/","allthreads",sep="")
+filename <- file.path(list,"allthreads")
 as.one.file(files,filename=paste(filename,".txt",sep=""),list=list)
 
 
@@ -74,9 +74,9 @@ save(forest_corrected,file=paste(filename,"_forest_corrected.rda",sep=""))
 # Build entire communication network
 load(file=paste(filename,"_forest_corrected.rda",sep=""))
 commlist <- createedges(forest_corrected)
-save(commlist,file=paste(list,"/commlist_",list,".rda",sep=""))
+save(commlist,file=file.path(list,"commlist_",list,".rda"))
 commnet <- adjacency(commlist) # might require a lot of working space
-save(commnet,file=paste(list,"/commnet_",list,".rda",sep=""))
+save(commnet,file=file.path(list,"commnet_",list,".rda"))
 
 
 # Get term frequencies from subjects/content
@@ -93,30 +93,30 @@ if (terms.from=="subjects"){
 if (terms.from=="content"){
   termfreq <- termfreq[termfreq>19]
 }
-save(termfreq,file=paste(list,"/termfreq_",terms.from,".rda",sep=""))
+save(termfreq,file=file.path(list,"termfreq_",terms.from,".rda"))
 
 
 # Create communication networks of all people who used a certain term contained in termfreq_subjects/termfreq_content
 # Results are saved as net_terms[i].
 load(file=paste(filename,"_forest_corrected.rda",sep=""))
 forest_corrected[,4:5] <- base::tolower(forest_corrected[,4:5])
-load(file=paste(list,"/termfreq_",terms.from,".rda",sep=""))
-dir.create(paste(list,"/",terms.from,sep=""))
+load(file=file.path(list,"termfreq_",terms.from,".rda"))
+dir.create(file.path(list,terms.from))
 extract.commnet(forest_corrected,names(termfreq),apply.on=terms.from)
 
 
 # Create two-mode network: people and terms
 # Result is saved as "peopleandterms_edgelist.rda"
-load(file=paste(list,"/termfreq_",terms.from,".rda",sep=""))
+load(file=file.path(list,"termfreq_",terms.from,".rda"))
 edgelist <- centrality.edgelist(terms=names(termfreq),apply.on=terms.from)
-save(edgelist,file=paste(list,"/peopleandterms_",terms.from,"_edgelist.rda",sep=""))
+save(edgelist,file=file.path(list,"peopleandterms_",terms.from,"_edgelist.rda"))
 net <- adjacency(edgelist,mode="addvalues",directed=F)
-save(net,file=paste(list,"/peopleandterms_",terms.from,"_net.rda",sep=""))
+save(net,file=file.path(list,"peopleandterms_",terms.from,"_net.rda"))
 
 
 # 2-mode plot
-load(file="rhelp/peopleandterms_subjects_net.rda")
-load("rhelp/peopleandterms_subjects_edgelist.rda")
+load(file.path("rhelp","peopleandterms_subjects_net.rda"))
+load(file.path("rhelp","peopleandterms_subjects_edgelist.rda"))
 peoplelist <- edgelist[,1]
 peoplelist <- peoplelist[peoplelist!="data"]
 peoplelist <- peoplelist[peoplelist!="dat"]
@@ -148,19 +148,19 @@ gplot.snatm(twomode
 
 
 # Make interest network from 2-mode-network
-load(file=paste(list,"/peopleandterms_",terms.from,"_net.rda",sep=""))
-load(file=paste(list,"/peopleandterms_",terms.from,"_edgelist.rda",sep=""))
+load(file=file.path(list,"peopleandterms_",terms.from,"_net.rda"))
+load(file=file.path(list,"peopleandterms_",terms.from,"_edgelist.rda"))
 people <- which(is.element(rownames(net),unique(edgelist[,1])))
 interestnet <- shrink(net,by="row",keep=people,values="min")
-save(interestnet,file=paste(list,"/interestnet_",terms.from,".rda",sep=""))
+save(interestnet,file=file.path(list,"interestnet_",terms.from,".rda"))
 
 
 # Compare communication network and interest network
 
 # Figure 3
 
-load(file="rdevel/interestnet_subjects.rda")
-load(file="rdevel/network_red_subjects_permuted.rda")
+load(file.path("rdevel","interestnet_subjects.rda"))
+load(file.path("rdevel","network_red_subjects_permuted.rda"))
 diag(network_red) <- 0
 plot(as.vector(network_red),as.vector(interestnet)
     ,xlab="Number of e-mails"
@@ -176,55 +176,55 @@ plot(as.vector(network_red),as.vector(interestnet)
 # Figure 4
 
 network_red_ig <- graph.adjacency(network_red, mode="directed")
-save(network_red_ig,file="rhelp/network_red_subjects_permuted_ig.rda")
-write.graph(network_red_ig,file="rhelp/network_red_subjects_permuted.net",format="pajek")
+save(network_red_ig,file=file.path("rhelp","network_red_subjects_permuted_ig.rda"))
+write.graph(network_red_ig,file=file.path("rhelp","network_red_subjects_permuted.net"),format="pajek")
 # Calculate closeness with pajek because network_red is not connected
-clo <- read.table("rhelp/network_red_subjects_permuted_closeness.txt",skip=1)
+clo <- read.table(file.path("rhelp","network_red_subjects_permuted_closeness.txt"),skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
 #betw <- igraph::betweenness(network_red_ig,directed=F)
 #pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
-save(centm,file="rhelp/network_red_subjects_permuted_centm.rda")
+save(centm,file=file.path("rhelp","network_red_subjects_permuted_centm.rda"))
 
 network_red_ig <- graph.adjacency(network_red, mode="directed")
-save(network_red_ig,file="rhelp/network_red_content_permuted_ig.rda")
-write.graph(network_red_ig,file="rhelp/network_red_content_permuted.net",format="pajek")
-clo <- read.table(file="rhelp/network_red_content_permuted_closeness.txt",skip=1)
+save(network_red_ig,file=file.path("rhelp","network_red_content_permuted_ig.rda"))
+write.graph(network_red_ig,file=file.path("rhelp","network_red_content_permuted.net"),format="pajek")
+clo <- read.table(file=file.path("rhelp","network_red_content_permuted_closeness.txt"),skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
 #betw <- igraph::betweenness(network_red_ig,directed=F)
 #pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
-save(centm,file="rhelp/network_red_content_permuted_centm.rda")
+save(centm,file=file.path("rhelp","network_red_content_permuted_centm.rda"))
 
 network_red_ig <- graph.adjacency(network_red, mode="directed")
-save(network_red_ig,file="rdevel/network_red_subjects_permuted_ig.rda")
-write.graph(network_red_ig,file="rdevel/network_red_subjects_permuted.net",format="pajek")
-clo <- read.table("rdevel/network_red_subjects_permuted_closeness.txt",skip=1)
+save(network_red_ig,file.path="rdevel","network_red_subjects_permuted_ig.rda")
+write.graph(network_red_ig,file=file.path("rdevel","network_red_subjects_permuted.net",format="pajek"))
+clo <- read.table(file.path("rdevel","network_red_subjects_permuted_closeness.txt"),skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
 #betw <- igraph::betweenness(network_red_ig,directed=F)
 #pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
-save(centm,file="rdevel/network_red_subjects_permuted_centm.rda")
+save(centm,file=file.path("rdevel","network_red_subjects_permuted_centm.rda"))
 
 network_red_ig <- graph.adjacency(network_red, mode="directed")
-save(network_red_ig,file="rdevel/network_red_content_permuted_ig.rda")
-write.graph(network_red_ig,file="rdevel/network_red_content_permuted.net",format="pajek")
-clo <- read.table("rdevel/network_red_content_permuted_closeness.txt",skip=1)
+save(network_red_ig,file=file.path("rdevel","network_red_content_permuted_ig.rda"))
+write.graph(network_red_ig,file=file.path("rdevel","network_red_content_permuted.net"),format="pajek")
+clo <- read.table(file.path("rdevel","network_red_content_permuted_closeness.txt"),skip=1)
 clo <- as.vector(as.matrix(clo))
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
 #betw <- igraph::betweenness(network_red_ig,directed=F)
 #pr <- igraph::page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
-save(centm,file="rdevel/network_red_content_permuted_centm.rda")
+save(centm,file=file.path("rdevel","network_red_content_permuted_centm.rda"))
 
-load(file="rhelp/network_red_subjects_permuted.rda")
+load(file=file.path("rhelp","network_red_subjects_permuted.rda"))
 diag(network_red) <- 0
-load(file="rhelp/interestnet_subjects.rda")
+load(file=file.path("rhelp","interestnet_subjects.rda"))
 par(mfrow=c(1,2),mar=c(4,4,4,0.5))
-load(file="rhelp/network_red_subjects_permuted_centm.rda")
+load(file=file.path("rhelp","network_red_subjects_permuted_centm.rda"))
 for (k in seq_along(centm)){
   a <- seq(0,max(centm[[k]]),by=max(centm[[k]])/100)
   c <- c()
@@ -257,11 +257,11 @@ for (k in seq_along(centm)){
 }
 text(labels=paste("n=",dim(network_red)[1],sep=""),x=0.15,y=1)
 
-load(file="rhelp/network_red_content_permuted.rda")
+load(file=file.path("rhelp","network_red_content_permuted.rda"))
 diag(network_red) <- 0
-load(file="rhelp/interestnet_content.rda")
+load(file=file.path("rhelp","interestnet_content.rda"))
 par(yaxt="s",xaxt="s")
-load(file="rhelp/network_red_content_permuted_centm.rda")
+load(file=file.path("rhelp","network_red_content_permuted_centm.rda"))
 for (k in seq_along(centm)){
   a <- seq(0,max(centm[[k]]),by=max(centm[[k]])/100)
   c <- c()
@@ -294,11 +294,11 @@ for (k in seq_along(centm)){
 }
 text(labels=paste("n=",dim(network_red)[1],sep=""),x=0.15,y=1)
 
-load(file="rdevel/network_red_subjects_permuted.rda")
+load(file=file.path("rdevel","network_red_subjects_permuted.rda"))
 diag(network_red) <- 0
-load(file="rdevel/interestnet_subjects.rda")
+load(file.path("rdevel","interestnet_subjects.rda"))
 par(mfrow=c(1,2),mar=c(4,4,4,0.5))
-load(file="rdevel/network_red_subjects_permuted_centm.rda")
+load(file.path("rdevel","network_red_subjects_permuted_centm.rda"))
 for (k in seq_along(centm)){
   a <- seq(0,max(centm[[k]]),by=max(centm[[k]])/100)
   c <- c()
@@ -331,11 +331,11 @@ for (k in seq_along(centm)){
 }
 text(labels=paste("n=",dim(network_red)[1],sep=""),x=0.15,y=1)
 
-load(file="rdevel/network_red_content_permuted.rda")
+load(file=file.path("rdevel","network_red_content_permuted.rda"))
 diag(network_red) <- 0
-load(file="rdevel/interestnet_content.rda")
+load(file=file.path("rdevel","interestnet_content.rda"))
 par(yaxt="s",xaxt="s")
-load(file="rdevel/network_red_content_permuted_centm.rda")
+load(file=file.path("rdevel","network_red_content_permuted_centm.rda"))
 for (k in seq_along(centm)){
   a <- seq(0,max(centm[[k]]),by=max(centm[[k]])/100)
   c <- c()
@@ -381,11 +381,11 @@ legend(legend=c("Degree","Betweenness","Closeness","Pagerank")
 
 # Figure 5
 
-load("rhelp/allthreads_forest_corrected.rda")
+load(file.path("rhelp","allthreads_forest_corrected.rda"))
 ansquest <- ans.quest(forest_corrected)
-save(ansquest,file="rhelp/ansquest.rda")
-load("rhelp/network_red_subjects_permuted_centm.rda")
-load("rhelp/network_red_subjects_permuted.rda")
+save(ansquest,file=file.path("rhelp","ansquest.rda"))
+load(file.path("rhelp","network_red_subjects_permuted_centm.rda"))
+load(file.path("rhelp","network_red_subjects_permuted.rda"))
 deg <- cbind(rownames(network_red),centm[[1]])
 cent <- c()
 for (i in 1:dim(deg)[1]){
@@ -396,13 +396,13 @@ for (i in 1:dim(deg)[1]){
 cent <- cbind(cent,as.numeric(deg[,2]))
 rownames(cent) <- deg[,1]
 colnames(cent) <- c("questions","answers","deg")
-save(cent,file="rhelp/network_red_subjects_permuted_cent.rda")
+save(cent,file=file.path("rhelp","network_red_subjects_permuted_cent.rda"))
 
-load("rdevel/allthreads_forest_corrected.rda")
+load(file.path("rdevel","allthreads_forest_corrected.rda"))
 ansquest <- ans.quest(forest_corrected)
-save(ansquest,file="rdevel/ansquest.rda")
-load("rdevel/network_red_subjects_permuted_centm.rda")
-load("rdevel/network_red_subjects_permuted.rda")
+save(ansquest,file=file.path("rdevel","ansquest.rda"))
+load(file.path("rdevel","network_red_subjects_permuted_centm.rda"))
+load(file.path("rdevel","network_red_subjects_permuted.rda"))
 deg <- cbind(rownames(network_red),centm[[1]])
 cent <- c()
 for (i in 1:dim(deg)[1]){
@@ -413,16 +413,16 @@ for (i in 1:dim(deg)[1]){
 cent <- cbind(cent,as.numeric(deg[,2]))
 rownames(cent) <- deg[,1]
 colnames(cent) <- c("questions","answers","deg")
-save(cent,file="rdevel/network_red_subjects_permuted_cent.rda")
+save(cent,file=file.path("rdevel","network_red_subjects_permuted_cent.rda"))
 
 par(mfrow=c(1,2),mar=c(4.2,4,3,0.5))
-load(file="rhelp/network_red_subjects_permuted_cent.rda")
+load(file=file.path("rhelp","network_red_subjects_permuted_cent.rda"))
 deg <- normalize(cent[,3])
 col <- rep("black",dim(cent)[1])
 col[deg>0.4] <- "red"
 plot(cent[,1],cent[,2],cex=deg*5,col=col,xlab="Number of questions",ylab="Number of answers",main="R-help")
 
-load(file="rdevel/network_red_subjects_permuted_cent.rda")
+load(file.path("rdevel","network_red_subjects_permuted_cent.rda"))
 deg <- normalize(cent[,3])
 col <- rep("black",dim(cent)[1])
 col[deg>0.2] <- "red"
