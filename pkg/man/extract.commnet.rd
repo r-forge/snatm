@@ -20,9 +20,9 @@ c(1,1,"PersonA","[R] Question on rhelp","Hello, I have a question...")
 ,c(4,2,"PersonD","[R] Question on rdevel","Answer")
 )
 terms <- c("help")
-apply.on <- "subjects"
+apply.to <- "subjects"
 list <- "rhelp"
 dir.create("rhelp")
 dir.create("subjects")
-extract.commnet(forest,terms,apply.on,list)
+extract.commnet(forest,terms,apply.to,list)
 }
