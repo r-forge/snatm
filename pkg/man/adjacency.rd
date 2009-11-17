@@ -16,4 +16,3 @@
 }
 \value{A matrix representation of a network. Row names and column names contain names of nodes.}
 \author{Angela Bohn \email{angela.bohn at gmail.com}}
-}
