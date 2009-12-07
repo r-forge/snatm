@@ -15,7 +15,7 @@ Fifth column contains the subject.
 Sixth column contains the content.}
 \author{Angela Bohn \email{angela.bohn at gmail.com}}
 \examples{
-setInternet2(use = TRUE)
-download.file("https://stat.ethz.ch/pipermail/r-devel/2008-January.txt.gz", "2008-January.txt")
-forest <- makeforest("2008-January")
+#setInternet2(use = TRUE)
+#download.file("https://stat.ethz.ch/pipermail/r-devel/2008-January.txt.gz", "2008-January.txt")
+#forest <- makeforest("2008-January")
 }
