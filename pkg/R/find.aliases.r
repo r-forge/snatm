@@ -90,7 +90,7 @@ findclusters <- function(v                                                # v=un
     }
   }
   sortedclusters <- lapply(clusters,sort)
-  clusters <- clusters[!duplicated(sortedclusters)]
+  clusters <- clusters[!duplicated(base::tolower(sortedclusters))]
   clusters <- clusters[!unlist(lapply(lapply(clusters,is.na),any))]
   if (length(clusters)>0&length(not.take.memory)>0){
     for (i in seq_along(clusters)){
