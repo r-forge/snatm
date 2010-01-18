@@ -36,8 +36,8 @@ a <- normalizeauthors(authors)
 b <- sapply(a,sortnames,USE.NAMES=FALSE)
 c <- sapply(b,emailfirst,USE.NAMES=FALSE)
 # Load databases for aliases that already have been found and have been accpted and not accepted, respectively.
-load("take.memory.rda") # First vector element of each list element i (take.memory[[i]][1]) can be replaced by any of the following.
-load("not.take.memory.rda") # First vector element of each list element i (not.take.memory[[i]][1]) cannot be replaced by any of the following.
+data(take.memory) # First vector element of each list element i (take.memory[[i]][1]) can be replaced by any of the following.
+data(not.take.memory) # First vector element of each list element i (not.take.memory[[i]][1]) cannot be replaced by any of the following.
 d <- changenames(clusters=take.memory,forest=c,accept=1:length(take.memory))
 # clusters is a list where each list element [[i]] contains a vector.
 # First vector element is matched string and following elements are matches found.
