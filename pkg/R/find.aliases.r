@@ -113,7 +113,7 @@ findclusters <- function(v                                                # v=un
   clusters
 }
 
-changenames <- function(clusters,z,accept){
+changenames <- function(clusters,forest,accept){
   if (length(accept)>0){
     clusters <- clusters[accept]
   }
@@ -126,11 +126,11 @@ changenames <- function(clusters,z,accept){
     if (length(containsspace)==0){
       newname <- clusters[[i]][1]
     }
-    if (max(is.element(z,altnames))==1){
-      z[is.element(z,altnames)] <- newname
+    if (max(is.element(forest,altnames))==1){
+      forest[is.element(forest,altnames)] <- newname
     }
   }
-  z
+  forest
 }
 
 final <- function(d){
