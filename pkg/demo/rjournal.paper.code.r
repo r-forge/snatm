@@ -74,9 +74,9 @@ save(forest_corrected,file=paste(filename,"_forest_corrected.rda",sep=""))
 # Build entire communication network
 load(file=paste(filename,"_forest_corrected.rda",sep=""))
 commlist <- createedges(forest_corrected)
-save(commlist,file=file.path(list,"commlist_",list,".rda"))
+save(commlist,file=file.path(list,paste("commlist_",list,".rda",sep="")))
 commnet <- adjacency(commlist) # might require a lot of working space
-save(commnet,file=file.path(list,"commnet_",list,".rda"))
+save(commnet,file=file.path(list,paste("commnet_",list,".rda",sep="")))
 
 
 # Get term frequencies from subjects/content
