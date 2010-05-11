@@ -3,7 +3,7 @@ makeforest <- function(month){
   workingobject <- tm::Corpus(DirSource(month), readerControl = list(reader = readMail(DateFormat = "%a, %d %b %Y %H:%M:%S")))
   workingobject <- sapply(workingobject,tm.plugin.mail::removeCitation)
   workingobject <- sapply(workingobject,tm.plugin.mail::removeSignature)
-  threadid <- tm.plugin.mail::threads(workingobject)$ThreadID
+  threadid <- threads(workingobject)$ThreadID
   workingobject <- workingobject[!is.na(threadid)]
   Content <- sapply(sapply(workingobject,"Content"),paste,collapse="\n")
   numberofmail <- 1:length(workingobject)
