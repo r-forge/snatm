@@ -7,7 +7,7 @@ extract.commnet <- function(forest,terms,apply.on=c("subjects","content"),list=c
       net <- createedges(forest,contentfilter=terms[i])
     }
     if (dim(net)[1]>0){
-      net <- makematrix(net)
+      net <- adjacency(net)
       save(net,file=paste(list,"/",apply.on,"/net_",terms[i],".rda",sep=""))
     }
   }
