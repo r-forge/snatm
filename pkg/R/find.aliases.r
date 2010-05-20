@@ -57,23 +57,26 @@ sortnames <- function(x){
   x1
 }
 
-emailfirst <- function(y){
-  if (length(grep(y,pattern=" "))>0){
-    email <- gsub(y,pattern="[[:print:]]* [[:print:]]*\\||\\|[[:print:]]* [[:print:]]*",replacement="")
-    email <- gsub(email,pattern="\\|",replacement="")
-    if (email!=y){
-      realname <- gsub(y,pattern=paste(email,"\\||\\|",email,sep=""),replacement="")
-      final <- paste(email,realname,sep="|")
-      final <- gsub(final,pattern="\\|$",replacement="")
+emailfirst <- function (y)
+{
+    if (length(grep(y, pattern = " ")) > 0) {
+        email <- gsub(y, pattern = "[[:print:]]* [[:print:]]*\\||\\|[[:print:]]* [[:print:]]*",
+            replacement = "")
+        email <- gsub(email, pattern = "\\|", replacement = "")
+        if (email != y) {
+            realname <- gsub(y, pattern = paste(email, "|",sep=""),replacement="",fixed=T)
+            realname <- gsub(realname,pattern=paste("|",email, sep = ""), replacement = "",fixed=T)
+            final <- paste(email, realname, sep = "|")
+            final <- gsub(final, pattern = "\\|$", replacement = "")
+        }
+        if (email == y) {
+            final <- y
+        }
     }
-    if (email==y){
-      final <- y
+    if (length(grep(y, pattern = " ")) == 0) {
+        final <- y
     }
-  }
-  if (length(grep(y,pattern=" "))==0){
-    final <- y
-  }
-  final
+    final
 }
 
 findclusters <- function(v                                                # v=unique(c)
