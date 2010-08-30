@@ -9,6 +9,7 @@ createedges <- function(forest,subjectfilter=NULL,contentfilter=NULL,lv="nom"){
     forest <- forest[grep(forest[,5],pattern=contentfilter),]
   }
   if (length(forest)>0){
+  forest <- matrix(forest,ncol=5)
     for (i in min(as.numeric(forest[,2])):max(as.numeric(forest[,2]))){
       thread <- forest[as.numeric(forest[,2])==i,]
       if (length(thread)==5){

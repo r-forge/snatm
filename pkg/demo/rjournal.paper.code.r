@@ -108,7 +108,7 @@ extract.commnet(forest_corrected,names(termfreq),apply.on=terms.from)
 # Create two-mode network: people and terms
 # Result is saved as "peopleandterms_edgelist.rda"
 load(file=file.path(list,"termfreq_",terms.from,".rda"))
-edgelist <- centrality.edgelist(terms=names(termfreq),apply.on=terms.from)
+edgelist <- centrality.edgelist(terms=names(termfreq),apply.to=terms.from,list=list)
 save(edgelist,file=file.path(list,"peopleandterms_",terms.from,"_edgelist.rda"))
 net <- adjacency(edgelist,mode="addvalues",directed=F)
 save(net,file=file.path(list,"peopleandterms_",terms.from,"_net.rda"))

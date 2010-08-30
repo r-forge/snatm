@@ -7,7 +7,7 @@
 \arguments{
 \item{terms}{A character vector containing terms for which \code{extract.commnet} stored a network with file name
 \code{net_terms}.}
-\item{apply.on}{Whether the function should be applied to the terms in \code{subjects} or \code{content}.}
+\item{apply.to}{Whether the function should be applied to the terms in \code{subjects} or \code{content}.}
 \item{list}{\code{rhelp} or \code{rdevel}}
 }
 \value{A matrix with three columns. First colum contains authors, second column contains terms and third column contains
@@ -20,5 +20,5 @@ rownames(net) <- colnames(net) <- c("PersonA","PersonB")
 dir.create("rhelp")
 dir.create("rhelp/content")
 save(net,file="rhelp/content/net_hallo.rda")
-centrality.edgelist("hallo",apply.on="content",list="help")
+centrality.edgelist("hallo",apply.to="content",list="help")
 }
