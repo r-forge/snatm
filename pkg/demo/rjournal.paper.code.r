@@ -82,7 +82,7 @@ save(commnet,file=file.path(list,paste("commnet_",list,".rda",sep="")))
 # Get term frequencies from subjects/content
 load(file=paste(filename,"_forest_corrected.rda",sep=""))
 colnames(forest_corrected)[4:5] <- c("subjects","content")
-termfreq <- tm::Corpus(VectorSource(forest_corrected[,which(colnames(forest_corrected)==terms.from)]))
+termfreq <- tm::Corpus(VectorSource(forest_corrected[,terms.from]))
 termfreq <- unlist(mapply(tm::termFreq,termfreq))
 termfreq <- termfreq[!is.element(names(termfreq),stopwords())]
 words <- names(termfreq)
@@ -208,9 +208,7 @@ clo <- as.vector(as.matrix(clo))
 pr <- page.rank(network_red_ig,directed=F)$vector
 centm <- list(deg,betw,clo,pr)
 save(centm,file="rdevel/network_red_content_permuted_centm.rda")
-@
-\setkeys{Gin}{width=1\textwidth}
-<<fig=TRUE,echo=FALSE>>=
+
 load(file="rhelp/network_red_subjects_permuted.rda")
 diag(network_red) <- 0
 load(file="rhelp/interestnet_subjects.rda")
@@ -462,3 +460,7 @@ plot(cent[,1],cent[,2]
     ,cex=deg*5,col=col
     ,ylab="",xlab=paste("Number of questions","\n","(log scale)")
     ,main="R-devel",log="xy")
+
+
+
+
