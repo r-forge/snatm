@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \title{Create a valued edgelist for 2-mode-network of people and words}
 \description{Create a valued edgelist for 2-mode-network of people and words.}
-\usage{centrality.edgelist(terms,apply.on,list)}
+\usage{centrality.edgelist(terms,apply.to,list)}
 \arguments{
 \item{terms}{A character vector containing terms for which \code{extract.commnet} stored a network with file name
 \code{net_terms}.}
