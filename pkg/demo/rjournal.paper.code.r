@@ -1,6 +1,6 @@
 # Choose which list (help or devel) and which terms (subjects or content) you want to analyse.
-list <- "devel"
-terms.from <- "subjects"
+list <- "help"
+terms.from <- "content"
 
 
 # Create folder tree
@@ -98,7 +98,7 @@ extract.commnet(forest_corrected,names(termfreq),apply.to=terms.from,list=list)
 
 # Create two-mode network: people and terms
 # Result is saved as "peopleandterms_edgelist.rda"
-load(file=file.path(list,"termfreq_",terms.from,".rda"))
+load(file=file.path(list,paste("termfreq_",terms.from,".rda",sep="")))
 edgelist <- centrality.edgelist(terms=names(termfreq),apply.to=terms.from,list=list)
 save(edgelist,file=file.path(list,paste("peopleandterms_",terms.from,"_edgelist.rda",sep="")))
 net <- adjacency(edgelist,mode="addvalues",directed=F)
@@ -139,11 +139,11 @@ gplot.snatm(twomode
 
 
 # Make interest network from 2-mode-network
-load(file=file.path(list,"peopleandterms_",terms.from,"_net.rda"))
-load(file=file.path(list,"peopleandterms_",terms.from,"_edgelist.rda"))
+load(file=file.path(list,paste("peopleandterms_",terms.from,"_net.rda",sep="")))
+load(file=file.path(list,paste("peopleandterms_",terms.from,"_edgelist.rda",sep="")))
 people <- which(is.element(rownames(net),unique(edgelist[,1])))
 interestnet <- shrink(net,by="row",keep=people,values="min")
-save(interestnet,file=file.path(list,"interestnet_",terms.from,".rda"))
+save(interestnet,file=file.path(list,paste("interestnet_",terms.from,".rda",sep="")))
 
 
 # Compare communication network and interest network
