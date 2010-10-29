@@ -4,7 +4,7 @@ Version: 1.0
 Date: 2009-10-29
 Author: Angela Bohn and Ingo Feinerer
 Maintainer: Angela Bohn <angela.bohn@gmail.com>
-Depends: R (>= 2.9.2), tm, tm.plugin.mail, sna
+Depends: R (>= 2.12.0), tm, tm.plugin.mail, sna, wordnet
 Description: Procedures to analyse networks with combinations of Social Network Analysis and Text Mining
 License: GPL (>= 2)
 URL: https://r-forge.r-project.org/projects/snatm
