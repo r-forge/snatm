@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \title{Create an adjacency matrix from an edgelist}
 \description{Create an edgelist from an adjacency matrix.}
-\usage{adjacency(edgelist,directed=TRUE,valued=TRUE,mode="multiple")}
+\usage{edgelist(adjmatrix)}
 \arguments{
 \item{adjmatrix}{An adjacency matrix (square).}
 }

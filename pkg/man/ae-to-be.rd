@@ -11,10 +11,12 @@
 \encoding{UTF-8}
 \title{American English to British English}
 \description{Transforms American English spelling into British English spelling.}
-\usage{Simple(txt)}
-\usage{Simpleplus(txt)}
-\usage{OxEnglish(txt)}
-\usage{BritishEnglish(txt)}
+\usage{
+\item{Simple(txt)}{}
+\item{Simpleplus(txt)}{}
+\item{OxEnglish(txt)}{}
+\item{BritishEnglish(txt)}{}
+}
 \arguments{
 \item{txt}{A vector of character strings.}
 }

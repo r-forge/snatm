@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \title{Extract meta data and content from mailing lists}
 \description{Extract meta data and content from mailing lists.}
-\usage{makeforest(month,list)}
+\usage{makeforest(month)}
 \arguments{
 \item{month}{A character string containing the year and month to be analyzed in the form \code{"January-2008"}.}
 }

@@ -16,7 +16,7 @@ line values representing the normalized degree rank of the author in the term's 
 \examples{
 # Suppose net is the network of all people who used "hallo" in the content of the rhelp mailing list.
 net <- matrix(c(0,2,0,1,0,1,0,3,0),nrow=3)
-rownames(net) <- colnames(net) <- c("PersonA","PersonB")
+rownames(net) <- colnames(net) <- c("PersonA","PersonB","PersonC")
 dir.create("rhelp")
 dir.create("rhelp/content")
 save(net,file="rhelp/content/net_hallo.rda")

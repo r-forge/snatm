@@ -13,7 +13,7 @@
 normalizeauthors(authors)
 sortnames(x)
 emailfirst(y)
-changenames(clusters,forest,accept=1:length(take.memory))
+changenames(clusters,forest,accept)
 findclusters(v,distance=0.3,not.take.memory)
 final(d)
 }
@@ -23,7 +23,7 @@ final(d)
 \item{y}{A character vector (result of \code{sortnames}.}
 \item{clusters}{A list. The first element of each list element contains the matched name and 
       the following elements contain the aliases found.}
-\item{z}{A character vector (result of \code{emailfirst}).}
+\item{forest}{A character vector (result of \code{emailfirst}).}
 \item{accept}{A numeric vector containing the numbers of accepted list elements of \code{clusters}}
 \item{v}{A character vector (result of \code{changenames}).}
 \item{distance}{Numeric. Distance to be used for \code{base::agrep}. Defaults to 0.3.}
