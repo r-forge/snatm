@@ -12,10 +12,7 @@
 \title{American English to British English}
 \description{Transforms American English spelling into British English spelling.}
 \usage{
-\item{Simple(txt)}{}
-\item{Simpleplus(txt)}{}
-\item{OxEnglish(txt)}{}
-\item{BritishEnglish(txt)}{}
+Simpleplus(txt)
 }
 \arguments{
 \item{txt}{A vector of character strings.}

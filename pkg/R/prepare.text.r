@@ -11,7 +11,7 @@ prepare.text <- function(forest,terms.from=c("subjects","content"),list=c("rdeve
   for (i in seq_along(text)){
     text.temp <- text[i]
     text.temp <- unlist(strsplit(text.temp,split="[[:space:]]+"))
-    text.temp <- text.temp[nchar(text.temp)>2]
+    #text.temp <- text.temp[nchar(text.temp)>2]
     if (length(text.temp)>0){
       text[i] <- paste(text.temp,collapse=" ")
     }

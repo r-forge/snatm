@@ -81,7 +81,7 @@ save(commnet,file=file.path(list,paste("commnet_",list,".rda",sep="")))
 
 # Prepare textual data:
 load(file=paste(filename,"_forest_corrected.rda",sep=""))
-temp <- prepare.text(forest_corrected,corpus=terms.from,list=list)
+temp <- prepare.text(forest_corrected,terms.from=terms.from,list=list)
 termfreq <- temp[[1]]
 save(termfreq,file=file.path(list,paste("termfreq_",terms.from,".rda",sep="")))
 forest_corrected <- temp[[2]]
