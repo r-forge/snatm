@@ -12,17 +12,3 @@
 }
 \value{Saves an \code{.rda} file named \code{net_terms} in the subdirectory \code{list/apply.to}}
 \author{Angela Bohn \email{angela.bohn at gmail.com}}
-\examples{
-forest <- rbind(
-c(1,1,"PersonA","[R] Question on rhelp","Hello, I have a question...")
-,c(2,1,"PersonB","[R] Question on rhelp","This is the answer")
-,c(3,2,"PersonC","[R] Question on rdevel","Dear all,...")
-,c(4,2,"PersonD","[R] Question on rdevel","Answer")
-)
-terms <- c("help")
-apply.to <- "subjects"
-list <- "rhelp"
-dir.create("rhelp")
-dir.create("subjects")
-extract.commnet(forest,terms,apply.to,list)
-}
