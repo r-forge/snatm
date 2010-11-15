@@ -18,7 +18,3 @@ First time with \code{protect=NULL}.
 Second time with \code{protect} being a numerical vector indicating the index of terms that should not be replaced.\\
 Uses the \pkg{wordnet} package to find synonyms.}
 \author{Ingo Feinerer and Angela Bohn \email{angela.bohn at gmail.com}}
-\examples{
-wn.replace(c("car","auto"))
-wn.replace(c("car","auto"),protect=1)
-}

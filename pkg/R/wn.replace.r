@@ -11,7 +11,7 @@ wn.replace <- function(terms,protect=NULL){
         next
     s <- synonyms(terms[i])
     m <- terms %in% s
-    m[terms[m] %in% protect] <- F 
+    m[terms[m] %in% protect] <- FALSE 
     if (sum(m) > 1) {
         replace.w <- c(replace.w,sprintf("[%s][%s]",paste(terms[m], collapse = ", "),terms[i]))
         terms[m] <- terms[i]
