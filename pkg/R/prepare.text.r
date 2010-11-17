@@ -1,5 +1,5 @@
 library(tm)
-prepare.text <- function(forest,terms.from=c("subjects","content"),list=c("rdevel","rhelp"),protect=NULL,ae.to.be=T,replace=T,stem=T){
+prepare.text <- function(forest,terms.from=c("subjects","content"),list=c("rdevel","rhelp"),protect=NULL,ae.to.be=TRUE,replace=TRUE,stem=TRUE){
   colnames(forest)[4:5] <- c("subjects","content")
   if (ae.to.be){
     forest[,terms.from] <- Simpleplus(forest[,terms.from])
@@ -71,8 +71,8 @@ prepare.text <- function(forest,terms.from=c("subjects","content"),list=c("rdeve
   if (terms.from=="content"){
     mindocfreq <- 20
   }
-  termfreq <- termFreq(termfreq[[1]],control=list(minWordLength=3,stemming=F,minDocFreq=mindocfreq,stopwords=T))
-  termfreq <- sort(termfreq,decreasing=T)
+  termfreq <- termFreq(termfreq[[1]],control=list(minWordLength=3,stemming=FALSE,minDocFreq=mindocfreq,stopwords=TRUE))
+  termfreq <- sort(termfreq,decreasing=TRUE)
   text <- text1
   for (i in seq_along(text)){
     if (replace){

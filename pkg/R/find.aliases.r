@@ -64,8 +64,8 @@ emailfirst <- function (y)
             replacement = "")
         email <- gsub(email, pattern = "\\|", replacement = "")
         if (email != y) {
-            realname <- gsub(y, pattern = paste(email, "|",sep=""),replacement="",fixed=T)
-            realname <- gsub(realname,pattern=paste("|",email, sep = ""), replacement = "",fixed=T)
+            realname <- gsub(y, pattern = paste(email, "|",sep=""),replacement="",fixed=TRUE)
+            realname <- gsub(realname,pattern=paste("|",email, sep = ""), replacement = "",fixed=TRUE)
             final <- paste(email, realname, sep = "|")
             final <- gsub(final, pattern = "\\|$", replacement = "")
         }

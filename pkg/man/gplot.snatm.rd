@@ -56,7 +56,7 @@
 \item{label.lty}{See ?gplot(sna)}
 \item{vertex.lty}{See ?gplot(sna)}
 \item{edge.lwd}{See ?gplot(sna)}
-\item{labe.lwd}{See ?gplot(sna)}
+\item{label.lwd}{See ?gplot(sna)}
 \item{edge.len}{See ?gplot(sna)}
 \item{edge.curve}{See ?gplot(sna)}
 \item{edge.steps}{See ?gplot(sna)}
