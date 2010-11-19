@@ -3,8 +3,8 @@
 \encoding{UTF-8}
 \title{Prepare Text and Calculate Term Frequencies}
 \description{Perform a number of data preparation steps on a text corpus and calculate term frequencies.}
-\usage{prepare.text(forest, terms.from = c("subjects", "content"),list=c("rdevel", "rhelp"), protect = NULL, ae.to.be = T,
-                 replace = T, stem = T)}
+\usage{prepare.text(forest, terms.from = c("subjects", "content"),list=c("rdevel", "rhelp"), protect = NULL, ae.to.be = TRUE,
+                 replace = TRUE, stem = TRUE)}
 \arguments{
 \item{forest}{A matrix with five columns. Result of \code{makeforest}.}
 \item{terms.from}{Should the function be applied on \code{subjects} or \code{content}?}

@@ -29,6 +29,8 @@
 \item{coord}{See ?gplot(sna)}
 \item{jitter}{See ?gplot(sna)}
 \item{thresh}{See ?gplot(sna)}
+\item{usearrows}{See ?gplot(sna)}
+\item{mode}{See ?gplot(sna)}
 \item{displayisolates}{See ?gplot(sna)}
 \item{interactive}{See ?gplot(sna)}
 \item{xlab}{See ?gplot(sna)}
