@@ -12,7 +12,7 @@ function (dat, g = 1, gmode = "digraph", diag = FALSE, label = c(1:dim(dat)[2]),
     edge.lwd = 0, label.lwd = par("lwd"), edge.len = 0.5, edge.curve = 0.1,
     edge.steps = 50, loop.steps = 20, object.scale = 0.01, uselen = FALSE,
     usecurve = FALSE, suppress.axes = TRUE, vertices.last = TRUE,
-    new = TRUE, layout.par = NULL, ...)
+    new = TRUE, layout.par = NULL)
 {
     bellstate <- options()$locatorBell
     expstate <- options()$expression
