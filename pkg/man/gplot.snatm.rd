@@ -19,7 +19,7 @@
                  edge.curve = 0.1, edge.steps = 50, loop.steps = 20,
                  object.scale = 0.01, uselen = FALSE, usecurve = FALSE,
                  suppress.axes = TRUE, vertices.last = TRUE, new =
-                 TRUE, layout.par = NULL, ...)}
+                 TRUE, layout.par = NULL)}
 \arguments{
 \item{dat}{See ?gplot(sna)}
 \item{g}{See ?gplot(sna)}
