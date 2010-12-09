@@ -78,7 +78,7 @@ function (dat, g = 1, gmode = "digraph", diag = FALSE, label = c(1:dim(dat)[2]),
     baserad <- min(diff(xlim), diff(ylim)) * object.scale
     if (new) {
         plot(0, 0, xlim = xlim, ylim = ylim, type = "n", xlab = xlab,
-            ylab = ylab, asp = 1, axes = !suppress.axes, ...)
+            ylab = ylab, asp = 1, axes = !suppress.axes)
     }
     vertex.cex <- rep(vertex.cex, length = n)
     vertex.radius <- rep(baserad * vertex.cex, length = n)
