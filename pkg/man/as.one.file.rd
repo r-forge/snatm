@@ -9,7 +9,7 @@
 \item{filename}{Filename of the file containing all e-mails from \code{files}.}
 \item{list}{Which mailing list to use: \code{rhelp} or \code{rdevel}.}
 }
-\value{Prints \code{"Done"} when operation finished. Saves an \code{.rda} file with name \code{filename}.}
+\value{Saves an \code{.rda} file with name \code{filename}.}
 \details{Writing all e-mails in one file is necessary for \code{threads(tm.plugin.mail)} to assign correct
 thread IDs to all the e-mails later in the process.}
 \author{Angela Bohn \email{angela.bohn@gmail.com}}

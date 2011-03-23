@@ -5,5 +5,4 @@ as.one.file <- function(files,filename="allthreads.txt",list=c("rdevel","rhelp")
     writeLines(x,outFiles)
   }
   close(outFiles)
-  print("Done")
 }
