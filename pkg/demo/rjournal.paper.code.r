@@ -1,6 +1,6 @@
 # Choose which list (help or devel) and which terms (subjects or content) you want to analyse.
 list <- "devel" # or "help"
-terms.from <- "subjects" # or "content"
+terms.from <- "content" # or "content"
 
 
 # Create folder tree
@@ -42,7 +42,7 @@ d <- changenames(clusters=take.memory,forest=c,accept=1:length(take.memory))
 # clusters is a list where each list element contains a vector.
 # First vector element is matched string and following elements are matches found.
 clusters <- findclusters(unique(d),not.take.memory=not.take.memory)
-# if length(clusters>0):
+# if length(clusters)>0:
 # Manually look at every cluster [[i]] and decide whether to accept it or not.
 # Write numbers of accepted clusters like this: accept <- c(1,3,4) (if clusters 1, 3 and 4 are accepted)
 # and numbers of not accepted clusters like this: not.accept <- c(2,6) (if clusters 2 and 5 are not accepted)
@@ -106,8 +106,8 @@ save(net,file=file.path(list,paste("peopleandterms_",terms.from,"_net.rda",sep="
 
 
 # 2-mode plot
-load(file.path(list,"peopleandterms_subjects_net.rda"))
-load(file.path(list,"peopleandterms_subjects_edgelist.rda"))
+load(file.path("help","peopleandterms_subjects_net.rda"))
+load(file.path("help","peopleandterms_subjects_edgelist.rda"))
 peoplelist <- edgelist[,1]
 peoplelist <- peoplelist[peoplelist!="data"]
 peoplelist <- peoplelist[peoplelist!="dat"]
@@ -150,7 +150,6 @@ save(interestnet,file=file.path(list,paste("interestnet_",terms.from,".rda",sep=
     
     
 # Figure 3
-#load(file.path(list,paste("interestnet_",terms.from,"_wn.stem.rda",sep="")))
 load(file.path(list,paste("interestnet_",terms.from,".rda",sep="")))
 load(file.path(list,paste("commnet_",list,".rda",sep="")))
 if (any(is.na(rownames(commnet)))){
@@ -172,8 +171,11 @@ save(network_red_ig,file=file.path(list,paste("network_red_",terms.from,"_permut
 write.graph(network_red_ig,file=file.path(list,paste("network_red_",terms.from,"_permuted.net",sep="")),format="pajek")
 deg <- sna::degree(network_red,cmode="freeman",gmode="graph",ignore.eval=TRUE)
 betw <- igraph::betweenness(network_red_ig,directed=F)
-clo <- read.table(file.path(list,paste("network_red_",terms.from,"_permuted_closeness.txt",sep="")),skip=1)
-clo <- as.vector(as.matrix(clo))
+# Calculate closeness externally in Pajek (http://vlado.fmf.uni-lj.si/pub/networks/pajek/) save it or
+# load it from the package
+#clo <- read.table(file.path(list,paste("network_red_",terms.from,"_permuted_closeness.vec",sep="")),skip=1)
+#clo <- as.vector(as.matrix(clo))
+data(...) ### bearbeiten
 centm <- list(deg,betw,clo)
 save(centm,file=file.path(list,paste("network_red_",terms.from,"_permuted_centm.rda",sep="")))
 

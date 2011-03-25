@@ -1,7 +1,13 @@
-as.one.file <- function(files,filename="allthreads.txt",list=c("rdevel","rhelp")){
+as.one.file <- function(files,source=NULL,dest="allthreads.txt",list=c("devel","help")){
   outFiles <- file(filename, "w")
   for (i in files){
-    x <- readLines(paste(list,"/",i,sep=""))
+   # x <- readLines(paste(list,"/",i,sep=""))
+    if (length(source)>0){
+      x <- readLines(file.path(source,list,i))
+    }
+    if (length(source)==0){
+      x <- readLines(file.path(list,i))
+    }
     writeLines(x,outFiles)
   }
   close(outFiles)
