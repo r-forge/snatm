@@ -21,7 +21,7 @@ for (i in files){
                     
 # Write all these e-mails in one file.
 filename <- file.path(list,"allthreads")
-as.one.file(files,filename=paste(filename,".txt",sep=""),list=list)
+as.one.file(files,dest=paste(filename,".txt",sep=""),list=list)
 
 
 # Create a forest of the mailing list data stored in filename. Result will be a file named "filename_forest.rda".
@@ -175,7 +175,14 @@ betw <- igraph::betweenness(network_red_ig,directed=F)
 # load it from the package
 #clo <- read.table(file.path(list,paste("network_red_",terms.from,"_permuted_closeness.vec",sep="")),skip=1)
 #clo <- as.vector(as.matrix(clo))
-data(...) ### bearbeiten
+data(devel.subjects.closeness) 
+clo <- devel.subjects.closeness # or
+#data(devel.content.closeness) 
+#clo <- devel.content.closeness # or
+#data(help.subjects.closeness) 
+#clo <- help.subjects.closeness # or
+#data(help.content.closeness)
+#clo <- help.content.closeness 
 centm <- list(deg,betw,clo)
 save(centm,file=file.path(list,paste("network_red_",terms.from,"_permuted_centm.rda",sep="")))
 
