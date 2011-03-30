@@ -1,6 +1,6 @@
 # Choose which list (help or devel) and which terms (subjects or content) you want to analyse.
 list <- "devel" # or "help"
-terms.from <- "content" # or "content"
+terms.from <- "subjects" # or "content"
 
 
 # Create folder tree
