@@ -3,12 +3,12 @@
 \encoding{UTF-8}
 \title{Prepare Text and Calculate Term Frequencies}
 \description{Perform a number of data preparation steps on a text corpus and calculate term frequencies.}
-\usage{prepare.text(forest, terms.from = c("subjects", "content"),list=c("rdevel", "rhelp"), protect = NULL, ae.to.be = TRUE,
+\usage{prepare.text(forest, terms.from = c("subjects", "content"),list=c("devel", "help"), protect = NULL, ae.to.be = TRUE,
                  replace = TRUE, stem = TRUE)}
 \arguments{
 \item{forest}{A matrix with five columns. Result of \code{makeforest}.}
 \item{terms.from}{Should the function be applied on \code{subjects} or \code{content}?}
-\item{list}{Should the function be applied on the \code{rhelp} or \code{rdevel} mailing list?}
+\item{list}{Should the function be applied on the \code{help} or \code{devel} mailing list?}
 \item{ae.to.be}{Logical. Should American English spelling be transformed to British English spelling? Defaults to \code{TRUE}.}
 \item{replace}{Logical. Should terms be replaced by synonyms found in the text. See also \code{?wn.replace}}
 \item{protect}{A numerical vector indicating the index of terms that should not be replaced by synonyms.}
