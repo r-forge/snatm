@@ -162,8 +162,7 @@ if (any(is.na(rownames(interestnet)))){
     rownames(commnet)[is.na(rownames(commnet))][i] <- colnames(commnet)[is.na(rownames(commnet))][i] <- paste("NA",i,sep="")
   }
 }
-network_red <- commnet[is.element(rownames(commnet),rownames(interestnet)),]
-network_red <- network_red[,is.element(rownames(commnet),rownames(interestnet))]
+network_red <- commnet[is.element(rownames(commnet),rownames(interestnet)),is.element(rownames(commnet),rownames(interestnet))]
 network_red <- permutation(network_red,rownames(interestnet))
 save(network_red,file=file.path(list,paste("network_red_",terms.from,"_permuted.rda",sep="")))
 network_red_ig <- graph.adjacency(network_red, mode="directed")
