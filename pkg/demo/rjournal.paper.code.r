@@ -38,7 +38,7 @@ c <- sapply(b,emailfirst,USE.NAMES=FALSE)
 # Load databases for aliases that already have been found and have been accpted and not accepted, respectively.
 data(take.memory) # First vector element of each list element i (take.memory[[i]][1]) can be replaced by any of the following.
 data(not.take.memory) # First vector element of each list element i (not.take.memory[[i]][1]) cannot be replaced by any of the following.
-d <- changenames(clusters=take.memory,forest=c,accept=1:length(take.memory))
+# d <- changenames(clusters=take.memory,forest=c,accept=1:length(take.memory))
 # clusters is a list where each list element contains a vector.
 # First vector element is matched string and following elements are matches found.
 clusters <- findclusters(unique(d),not.take.memory=not.take.memory)
@@ -63,8 +63,11 @@ clusters <- findclusters(unique(d),not.take.memory=not.take.memory)
 # not.take.memory <- c(not.take.memory,not.take)
 # save(take.memory,file="take.memory.rda")
 # save(not.take.memory,file="not.take.memory.rda")
-e <- changenames(clusters,forest=d,accept=accept)
-f <- final(e)
+# If any more clusters to accept were found:
+# e <- changenames(clusters,forest=d,accept=accept)
+# f <- final(e)
+# otherwise
+f <- final(d)
 # Replace Author-Column in forest and save as forest_corrected
 forest_corrected <- cbind(forest[,1:2],f,forest[,4:5])
 colnames(forest_corrected)[3] <- colnames(forest)[3]
@@ -362,7 +365,7 @@ for (i in 1:dim(deg)[1]){
 cent <- cbind(cent,as.numeric(deg[,2]))
 rownames(cent) <- deg[,1]
 colnames(cent) <- c("questions","answers","deg")
-save(cent,file=file.path("help""network_red_subjects_permuted_cent.rda"))
+save(cent,file=file.path("help","network_red_subjects_permuted_cent.rda"))
 
 load(file.path("help","network_red_content_permuted_centm.rda"))
 load(file.path("help","network_red_content_permuted.rda"))
