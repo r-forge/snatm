@@ -1,7 +1,7 @@
 library(tm)
 prepare.text <- 
-function (forest, terms.from = c("subjects", "content"), list = c("rdevel", 
-    "rhelp"), protect = NULL, ae.to.be = TRUE, replace = TRUE, 
+function (forest, terms.from = c("subjects", "content"), list = c("devel", 
+    "help"), protect = NULL, ae.to.be = TRUE, replace = TRUE, 
     stem = TRUE) 
 {
     colnames(forest)[4:5] <- c("subjects", "content")
