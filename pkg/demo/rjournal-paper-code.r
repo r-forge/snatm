@@ -88,7 +88,7 @@ temp <- prepare.text(forest_corrected,terms.from=terms.from,list=list)
 termfreq <- temp[[1]]
 save(termfreq,file=file.path(list,paste("termfreq_",terms.from,".rda",sep="")))
 forest_corrected <- temp[[2]]
-save(forest_corrected,file=paste(filename,"_forest_corrected_prep.rda",sep=""))
+save(forest_corrected,file=paste(filename,"_forest_corrected_prep_",list,".rda",sep=""))
 
 
 # Create communication networks of all people who used a certain term contained in termfreq_subjects/termfreq_content
