@@ -1,8 +1,8 @@
-makeforest <- function (month)
+makeforest <- 
+function (month)
 {
-    unlink(file.path(month))
     tm.plugin.mail::convert_mbox_eml(paste(month, ".txt", sep = ""),
-        file.path(month))
+        paste(month, "/", sep = ""))
     workingobject <- tm::Corpus(DirSource(month), readerControl = list(reader = readMail(DateFormat = "%a, %d %b %Y %H:%M:%S")))
     workingobject <- sapply(workingobject, tm.plugin.mail::removeCitation)
     workingobject <- sapply(workingobject, tm.plugin.mail::removeSignature)
@@ -23,8 +23,8 @@ makeforest <- function (month)
     }
     forest <- cbind(numberofmail, threadid[!is.na(threadid)],
         authors, headings, Content[!is.na(threadid)])
+    Encoding(forest[,3:5]) <- "UTF-8"
     colnames(forest) <- c("emailID", "threadID", "author", "subjects",
         "content")
-    Encoding(forest[,c("author","subjects","content")]) <- "UTF-8"
     forest
 }

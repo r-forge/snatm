@@ -38,10 +38,10 @@ c <- sapply(b,emailfirst,USE.NAMES=FALSE)
 # Load databases for aliases that already have been found and have been accpted and not accepted, respectively.
 data(take.memory) # First vector element of each list element i (take.memory[[i]][1]) can be replaced by any of the following.
 data(not.take.memory) # First vector element of each list element i (not.take.memory[[i]][1]) cannot be replaced by any of the following.
-# d <- changenames(clusters=take.memory,forest=c,accept=1:length(take.memory))
+d <- changenames(clusters=take.memory,forest=c,accept=1:length(take.memory))
 # clusters is a list where each list element contains a vector.
 # First vector element is matched string and following elements are matches found.
-clusters <- findclusters(unique(d),not.take.memory=not.take.memory)
+#clusters <- findclusters(unique(d),not.take.memory=not.take.memory)
 # if length(clusters)>0:
 # Manually look at every cluster [[i]] and decide whether to accept it or not.
 # Write numbers of accepted clusters like this: accept <- c(1,3,4) (if clusters 1, 3 and 4 are accepted)
@@ -93,7 +93,7 @@ save(forest_corrected,file=paste(filename,"_forest_corrected_prep_",terms.from,"
 
 # Create communication networks of all people who used a certain term contained in termfreq_subjects/termfreq_content
 # Results are saved as net_terms[i].
-load(file=paste(filename,"_forest_corrected_prep_",list,".rda",sep=""))
+load(file=paste(filename,"_forest_corrected_prep_",terms.from,".rda",sep=""))
 load(file=file.path(list,paste("termfreq_",terms.from,".rda",sep="")))
 dir.create(file.path(list,terms.from))
 extract.commnet(forest_corrected,names(termfreq),apply.to=terms.from,list=list)
