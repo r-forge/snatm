@@ -146,6 +146,6 @@ final <- function(d){
   e <- gsub(pattern=" [[:punct:]]",x=e,replacement=" ")
   e <- gsub(pattern="[[:punct:]]",x=e,replacement=" ")
   e <- gsub(pattern="^ \\<",x=e,replacement="")
-  e <- gsub(pattern="[[:blank:]]{2,}",x=e,replacement=" ")
+  e <- gsub(pattern=" {2,}",x=e,replacement=" ")
   e
 }
