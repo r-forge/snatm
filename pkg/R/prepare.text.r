@@ -26,7 +26,7 @@ function (forest, terms.from = c("subjects", "content"), list = c("devel",
         if (length(text.temp) == 0) {
             text[i] <- ""
         }
-    }
+    } 
     text1 <- text
     text <- unlist(strsplit(text, split = "[[:space:]]+"))
     if (replace) {

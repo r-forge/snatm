@@ -59,6 +59,7 @@ sortnames <- function(x){
 
 emailfirst <- function (y)
 {
+  Encoding(y) <- "latin1"
     if (length(grep(y, pattern = " ")) > 0) {
         email <- gsub(y, pattern = "[[:print:]]* [[:print:]]*\\||\\|[[:print:]]* [[:print:]]*",
             replacement = "")

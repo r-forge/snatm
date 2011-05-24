@@ -11,7 +11,7 @@ function (terms, protect = NULL)
     for (i in seq_along(terms)) {
         if (i %in% skip) 
             next
-        s <- synonyms(terms[i])
+        s <- synonyms(terms[i],"NOUN")
         m <- terms %in% s
         m[terms[m] %in% protect] <- FALSE
         if (sum(m) > 1) {

@@ -23,7 +23,7 @@ function (month)
     }
     forest <- cbind(numberofmail, threadid[!is.na(threadid)],
         authors, headings, Content[!is.na(threadid)])
-    Encoding(forest[,3:5]) <- "UTF-8"
+    Encoding(forest[,3:5]) <- "latin1"
     colnames(forest) <- c("emailID", "threadID", "author", "subjects",
         "content")
     forest
