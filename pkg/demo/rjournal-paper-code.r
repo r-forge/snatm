@@ -12,11 +12,11 @@ files <- c("2008-January.txt","2008-February.txt","2008-March.txt","2008-April.t
           ,"2009-January.txt","2009-February.txt","2009-March.txt","2009-April.txt","2009-May.txt")
 
 
-# Download the mailing lists into folter "list"
-setInternet2(use = TRUE)
-for (i in files){
-  download.file(paste("https://stat.ethz.ch/pipermail/r-devel/",i,".gz",sep=""), paste(file.path(list,i)))
-}
+# Download the mailing lists into folter "list", e.g.
+#setInternet2(use = TRUE)
+#for (i in files){
+#  download.file(paste("https://stat.ethz.ch/pipermail/r-devel/",i,".gz",sep=""), paste(file.path(list,i)))
+#}
           
                     
 # Write all these e-mails in one file.
