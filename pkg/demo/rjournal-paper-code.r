@@ -409,16 +409,15 @@ plot(cent[,1],cent[,2]
     ,ylab="",xlab=paste("Number of questions","\n","(log scale)")
     ,main="R-devel",log="xy")
     
-load(file.path("help","network_red_subjects_permuted_cent.rda"))
-# adjust scales
-cent[dim(cent)[1],] <- c(max(cent[,1])+40,max(cent[,2])+100,0)
-deg <- normalize(cent[,3])
-col <- rep("black",dim(cent)[1])
-col[deg>0.2] <- "red"
-col[dim(cent)[1]] <- "transparent"
-pdf("")
-plot(cent[,1],cent[,2]
-    ,cex=deg*5,col=col
-    ,ylab="",xlab=paste("Number of questions","\n","(log scale)")
-    ,main="R-help",log="xy")
+#load(file.path("help","network_red_subjects_permuted_cent.rda"))
+#cent[dim(cent)[1],] <- c(max(cent[,1])+40,max(cent[,2])+100,0)
+#deg <- normalize(cent[,3])
+#col <- rep("black",dim(cent)[1])
+#col[deg>0.2] <- "red"
+#col[dim(cent)[1]] <- "transparent"
+#pdf("")
+#plot(cent[,1],cent[,2]
+#    ,cex=deg*5,col=col
+#    ,ylab="",xlab=paste("Number of questions","\n","(log scale)")
+#    ,main="R-help",log="xy")
 
