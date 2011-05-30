@@ -350,7 +350,6 @@ legend(legend=c("Degree","Betweenness","Closeness")
 # Figure 4
 
 #load(file.path("help","allthreads_forest_corrected.rda"))
-#source("ans.quest.r")
 #ansquest <- ans.quest(forest_corrected)
 #save(ansquest,file=file.path("help","ansquest.rda"))
 #load(file.path("help","network_red_subjects_permuted_centm.rda"))
@@ -366,20 +365,6 @@ legend(legend=c("Degree","Betweenness","Closeness")
 #rownames(cent) <- deg[,1]
 #colnames(cent) <- c("questions","answers","deg")
 #save(cent,file=file.path("help","network_red_subjects_permuted_cent.rda"))
-
-#load(file.path("help","network_red_content_permuted_centm.rda"))
-#load(file.path("help","network_red_content_permuted.rda"))
-#deg <- cbind(rownames(network_red),centm[[1]])
-#cent <- c()
-#for (i in 1:dim(deg)[1]){
-#  cent <- rbind(cent
-#  ,c(as.numeric(ansquest[deg[i,1]==ansquest[,1],2])
-#    ,as.numeric(ansquest[deg[i,1]==ansquest[,1],3])))
-#}
-#cent <- cbind(cent,as.numeric(deg[,2]))
-#rownames(cent) <- deg[,1]
-#colnames(cent) <- c("questions","answers","deg")
-#save(cent,file.path("help","network_red_content_permuted_cent.rda"))
 
 load(file.path("devel","allthreads_forest_corrected.rda"))
 ansquest <- ans.quest(forest_corrected)
@@ -397,20 +382,6 @@ cent <- cbind(cent,as.numeric(deg[,2]))
 rownames(cent) <- deg[,1]
 colnames(cent) <- c("questions","answers","deg")
 save(cent,file=file.path("devel","network_red_subjects_permuted_cent.rda"))
-
-#load(file.path("devel","network_red_content_permuted_centm.rda"))
-#load(file.path("devel","network_red_content_permuted.rda"))
-#deg <- cbind(rownames(network_red),centm[[1]])
-#cent <- c()
-#for (i in 1:dim(deg)[1]){
-#  cent <- rbind(cent
-#  ,c(as.numeric(ansquest[deg[i,1]==ansquest[,1],2])
-#    ,as.numeric(ansquest[deg[i,1]==ansquest[,1],3])))
-#}
-#cent <- cbind(cent,as.numeric(deg[,2]))
-#rownames(cent) <- deg[,1]
-#colnames(cent) <- c("questions","answers","deg")
-#save(cent,file=file.path("devel","network_red_content_permuted_cent.rda"))
 
 #par(mfrow=c(1,2),mar=c(4.2,4,3,0.5))
 #load(file=file.path("help","network_red_subjects_permuted_cent.rda"))
@@ -437,3 +408,17 @@ plot(cent[,1],cent[,2]
     ,cex=deg*5,col=col
     ,ylab="",xlab=paste("Number of questions","\n","(log scale)")
     ,main="R-devel",log="xy")
+    
+load(file.path("help","network_red_subjects_permuted_cent.rda"))
+# adjust scales
+cent[dim(cent)[1],] <- c(max(cent[,1])+40,max(cent[,2])+100,0)
+deg <- normalize(cent[,3])
+col <- rep("black",dim(cent)[1])
+col[deg>0.2] <- "red"
+col[dim(cent)[1]] <- "transparent"
+pdf("")
+plot(cent[,1],cent[,2]
+    ,cex=deg*5,col=col
+    ,ylab="",xlab=paste("Number of questions","\n","(log scale)")
+    ,main="R-help",log="xy")
+
