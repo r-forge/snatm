@@ -161,8 +161,8 @@ if (any(is.na(rownames(commnet)))){
   }
 }
 if (any(is.na(rownames(interestnet)))){
-  for (i in 1:which(is.na(rownames(commnet)))){
-    rownames(commnet)[is.na(rownames(commnet))][i] <- colnames(commnet)[is.na(rownames(commnet))][i] <- paste("NA",i,sep="")
+  for (i in 1:which(is.na(rownames(interestnet)))){
+    rownames(interestnet)[is.na(rownames(interestnet))][i] <- colnames(interestnet)[is.na(rownames(interestnet))][i] <- paste("NA",i,sep="")
   }
 }
 network_red <- commnet[is.element(rownames(commnet),rownames(interestnet)),is.element(rownames(commnet),rownames(interestnet))]

@@ -1,7 +1,7 @@
 Package: snatm
 Title: Combine Social Network Analysis and Text Mining
-Version: 1.0
-Date: 2009-10-29
+Version: 1.1
+Date: 2011-08-29
 Author: Angela Bohn and Ingo Feinerer
 Maintainer: Angela Bohn <angela.bohn@gmail.com>
 Depends: R (>= 2.12.0), tm, tm.plugin.mail, sna, wordnet, igraph
