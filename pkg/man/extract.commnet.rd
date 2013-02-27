@@ -1,6 +1,5 @@
 \name{extract.commnet}
 \alias{extract.commnet}
-\encoding{UTF-8}
 \title{Extract a subnetwork of a communication network}
 \description{Extract a subnetwork of a communication network of all people who used a certain term in the subject or content.}
 \usage{extract.commnet(forest,terms,apply.to,list)}

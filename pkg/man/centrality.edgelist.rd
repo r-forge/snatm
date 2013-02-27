@@ -1,6 +1,5 @@
 \name{centrality.edgelist}
 \alias{centrality.edgelist}
-\encoding{UTF-8}
 \title{Create a valued edgelist for 2-mode-network of people and words}
 \description{Create a valued edgelist for 2-mode-network of people and words.}
 \usage{centrality.edgelist(terms,apply.to,list)}

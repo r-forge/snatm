@@ -1,6 +1,5 @@
 \name{take.memory}
 \alias{take.memory}
-\encoding{UTF-8}
 \title{Positive Alias Memory}
 \description{A database of aliases found by \code{find.aliases()} considered to be correct.}
 \usage{data(take.memory)}

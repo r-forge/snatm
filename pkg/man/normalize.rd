@@ -1,6 +1,5 @@
 \name{normalize}
 \alias{normalize}
-\encoding{UTF-8}
 \title{Normalize a numeric vector}
 \description{Normalize a numeric vector such that all values lie between 0 and 1.
 The minimum of the new vector is 0, the maximum is 1.}

@@ -1,6 +1,5 @@
 \name{as.one.file}
 \alias{as.one.file}
-\encoding{UTF-8}
 \title{Write mailing list e-mails from several months in one file}
 \description{Write mailing list e-mails from several months in one file.}
 \usage{as.one.file(files,source,dest,list)}

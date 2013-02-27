@@ -1,6 +1,5 @@
 \name{help.content.closeness}
 \alias{help.content.closeness}
-\encoding{UTF-8}
 \title{Closeness Centrality of R-help Content-Based Communication Network}
 \description{Closeness centrality of R-help content-based communication network calculated by Pajek
 (\url{http://vlado.fmf.uni-lj.si/pub/networks/pajek/})}

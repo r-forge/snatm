@@ -6,7 +6,6 @@
 \alias{changenames}
 \alias{findclusters}
 \alias{final}
-\encoding{UTF-8}
 \title{Find e-mail and real name aliases}
 \description{Find e-mail and real name aliases and replace them in result of \code{makeforest}.}
 \usage{

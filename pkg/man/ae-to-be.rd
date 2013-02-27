@@ -8,7 +8,6 @@
 \alias{zwords}
 \alias{re_zwords}
 \alias{unprotectwords}
-\encoding{UTF-8}
 \title{American English to British English}
 \description{Transforms American English spelling into British English spelling.}
 \usage{

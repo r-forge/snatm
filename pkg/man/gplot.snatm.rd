@@ -1,6 +1,5 @@
 \name{gplot.snatm}
 \alias{gplot.snatm}
-\encoding{UTF-8}
 \title{\code{gplot} function of \pkg{sna} version 1.5.}
 \description{\code{gplot} function of \pkg{sna} version 1.5.}
 \usage{gplot.snatm(dat, g = 1, gmode = "digraph", diag = FALSE, label =

@@ -1,6 +1,5 @@
 \name{prepare.text}
 \alias{prepare.text}
-\encoding{UTF-8}
 \title{Prepare Text and Calculate Term Frequencies}
 \description{Perform a number of data preparation steps on a text corpus and calculate term frequencies.}
 \usage{prepare.text(forest, terms.from = c("subjects", "content"),list=c("devel", "help"), protect = NULL, ae.to.be = TRUE,

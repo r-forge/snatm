@@ -1,6 +1,5 @@
 \name{wn.replace}
 \alias{wn.replace}
-\encoding{UTF-8}
 \title{Replace synonyms}
 \description{Replaces terms by their synonyms, if these synonyms were also found in the text.}
 \usage{wn.replace(terms,protect=NULL)}

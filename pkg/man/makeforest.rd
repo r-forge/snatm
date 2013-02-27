@@ -1,6 +1,5 @@
 \name{makeforest}
 \alias{makeforest}
-\encoding{UTF-8}
 \title{Extract meta data and content from mailing lists}
 \description{Extract meta data and content from mailing lists.}
 \usage{makeforest(month)}

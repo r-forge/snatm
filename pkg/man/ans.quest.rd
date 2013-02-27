@@ -1,6 +1,5 @@
 \name{ans.quest}
 \alias{ans.quest}
-\encoding{UTF-8}
 \title{Calculate the number of answers and questions per person in a mailing list}
 \description{Calculate the number of answers and questions per person in a mailing list.}
 \usage{ans.quest(forest)}

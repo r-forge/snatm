@@ -1,6 +1,5 @@
 \name{ordermatrix}
 \alias{ordermatrix}
-\encoding{UTF-8}
 \title{Order the rows of a matrix according to the values in a certain column}
 \description{Order the rows of a matrix according to the values in a certain column.}
 \usage{ordermatrix(input,by)}

@@ -1,6 +1,5 @@
 \name{createedges}
 \alias{createedges}
-\encoding{UTF-8}
 \title{Create edgelist from forest (result of \code{makeforest})}
 \description{Create edgelist from forest (result of \code{makeforest}).}
 \usage{createedges(forest,subjectfilter,contentfilter,lv)}

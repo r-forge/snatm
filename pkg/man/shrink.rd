@@ -1,6 +1,5 @@
 \name{shrink}
 \alias{shrink}
-\encoding{UTF-8}
 \title{Shrink a 2-mode-network}
 \description{Shrink a 2-mode-network into a 1-mode-network by omitting one node set (S) and connecting two nodes of the other set (R)
 if they were both formally connected a certain nodes of S.}

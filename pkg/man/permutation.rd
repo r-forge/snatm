@@ -1,6 +1,5 @@
 \name{permutation}
 \alias{permutation}
-\encoding{UTF-8}
 \title{Permute an adjacency matrix}
 \description{Permute an adjacency matrix.}
 \usage{permutation(network,namesequence)}

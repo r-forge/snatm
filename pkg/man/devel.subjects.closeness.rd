@@ -1,6 +1,5 @@
 \name{devel.subjects.closeness}
 \alias{devel.subjects.closeness}
-\encoding{UTF-8}
 \title{Closeness Centrality of R-devel Subject-Based Communication Network}
 \description{Closeness centrality of R-devel subject-based communication network calculated by Pajek
 (\url{http://vlado.fmf.uni-lj.si/pub/networks/pajek/})}
