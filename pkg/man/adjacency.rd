@@ -1,6 +1,5 @@
 \name{adjacency}
 \alias{adjacency}
-\encoding{UTF-8}
 \title{Create an adjacency matrix from an edgelist}
 \description{Create an adjacency matrix from an edgelist.}
 \usage{adjacency(edgelist,directed=TRUE,valued=TRUE,mode="multiple")}
