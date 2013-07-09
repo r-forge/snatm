@@ -1,3 +1,5 @@
+### Copyright (C) Angela Bohn
+
 adjacency <- function (edgelist, directed = TRUE, valued = TRUE, mode = "multiple") 
 {
     if (!is.data.frame(edgelist) & !is.matrix(edgelist)) {

@@ -1,3 +1,5 @@
+### Copyright (C) Angela Bohn
+
 permutation <- function(network,namesequence){
   if (dim(network)[1]!=length(namesequence)){
     stop("Dimension of network and length of namesequence must be equal.")

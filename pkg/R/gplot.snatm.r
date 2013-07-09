@@ -1,3 +1,6 @@
+### Copyright (C) Angela Bohn
+### based on sna::gplot
+
 library(sna)
 gplot.snatm <-
 function (dat, g = 1, gmode = "digraph", diag = FALSE, label = c(1:dim(dat)[2]),

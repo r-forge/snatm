@@ -1,3 +1,5 @@
+### Copyright (C) Angela Bohn
+
 as.one.file <- function(files,source=NULL,dest="allthreads.txt",list=c("devel","help")){
   outFiles <- file(dest, "w")
   for (i in files){

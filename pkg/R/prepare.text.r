@@ -1,3 +1,5 @@
+### Copyright (C) Angela Bohn
+
 library(tm)
 prepare.text <-
 function (forest, terms.from = c("subjects", "content"), list = c("devel",

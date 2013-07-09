@@ -1,3 +1,5 @@
+### Copyright (C) Angela Bohn
+
 extract.commnet <- 
 function (forest, terms, apply.to = c("subjects", "content"), 
     list = c("rhelp", "rdevel")) 

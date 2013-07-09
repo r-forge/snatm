@@ -1,3 +1,5 @@
+### Copyright (C) Angela Bohn
+
 createedges <- 
 function (forest, subjectfilter = NULL, contentfilter = NULL, 
     lv = "nom") 

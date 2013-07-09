@@ -1,3 +1,5 @@
+### Copyright (C) Angela Bohn
+
 library("tm")
 library("wordnet")
 
