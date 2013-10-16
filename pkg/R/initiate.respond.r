@@ -21,7 +21,7 @@ initiate.respond <- function(forest){
     ## thread starter
     ## NOTE: We cannot use textual labels to select the author column
     ## since they are not preserved when there is only a single result row
-    questioner <- thread[author.idx][1]
+    initiator <- thread[author.idx][1]
 
     if (!is.null(dim(thread)) && dim(thread)[1] > 1) {
       ## The thread is composed of more than one message
@@ -32,11 +32,11 @@ initiate.respond <- function(forest){
       answerers <- c()             #
     }                              #
 
-    if (!is.element(questioner,authors[,1])){
-      authors <- rbind(authors,c(questioner,1,0))
+    if (!is.element(initiator,authors[,1])){
+      authors <- rbind(authors,c(initiator,1,0))
     }
-    if (is.element(questioner,authors[,1])){
-      authors[authors[,1]==questioner,2] <- as.numeric(authors[authors[,1]==questioner,2])+1
+    if (is.element(initiator,authors[,1])){
+      authors[authors[,1]==initiator,2] <- as.numeric(authors[authors[,1]==initiator,2])+1
     }
     for (j in seq_along(answerers)){
       if (!is.element(answerers[j],authors[,1])){
