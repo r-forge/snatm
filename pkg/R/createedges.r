@@ -4,34 +4,41 @@ function (forest, subjectfilter = NULL, contentfilter = NULL,
 {
     edgelist <- c()
     if (length(subjectfilter) > 0) {
-        forest <- forest[grep(forest[, 4], pattern = subjectfilter), 
+        forest <- forest[grep(forest[, "subject"], pattern = subjectfilter),
             ]
     }
     if (length(contentfilter) > 0) {
-        forest <- forest[grep(forest[, 5], pattern = contentfilter), 
+        forest <- forest[grep(forest[, "content"], pattern = contentfilter),
             ]
     }
     if (length(forest) > 0) {
-        forest <- matrix(forest, ncol = 5)
-        for (i in min(as.numeric(forest[, 2])):max(as.numeric(forest[, 
-            2]))) {
-            thread <- forest[as.numeric(forest[, 2]) == i, ]
-            if (length(thread) == 5) {
-                aparty <- bparty <- thread[3]
+        threadID.idx <- which(colnames(forest)=="threadID")
+        author.idx <- which(colnames(forest)=="author")
+        subject.idx <- which(colnames(forest)=="subject")
+        content.idx <- which(colnames(forest)=="content")
+
+        forest <- matrix(forest, ncol=dim(forest)[2])
+        for (i in min(as.numeric(forest[,threadID.idx])):max(as.numeric(forest[,
+            threadID.idx]))) {
+            thread <- forest[as.numeric(forest[,threadID.idx]) == i, ]
+            if (is.null(dim(thread))) {
+                ## Exactly one contribution in the thread, author thread
+                ## starter talks to himself
+                aparty <- bparty <- thread[author.idx]
                 value <- 1
-                threadid <- thread[2]
-                subject <- thread[4]
-                content <- thread[5]
+                threadid <- thread[threadID.idx]
+                subject <- thread[subject.idx]
+                content <- thread[content.idx]
                 edgelist <- rbind(edgelist, cbind(aparty, bparty, 
                   1, threadid, subject, content))
             }
             else if (dim(thread)[1] > 1) {
                 for (j in 2:dim(thread)[1]) {
-                  aparty <- thread[j, 3]
-                  bparty <- thread[1:(j - 1), 3]
-                  subject <- thread[j, 4]
-                  content <- thread[j, 5]
-                  threadid <- thread[1, 2]
+                  aparty <- thread[j, author.idx]
+                  bparty <- thread[1:(j - 1), author.idx]
+                  subject <- thread[j, subject.idx]
+                  content <- thread[j, content.idx]
+                  threadid <- thread[1, threadID.idx]
                   if (lv == "nom") {
                     value <- 1
                   }

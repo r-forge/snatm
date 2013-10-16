@@ -10,18 +10,12 @@ initiate.respond <- function(forest){
   authors <- c()
   forest <- ordermatrix(forest,by=2)
 
-  ## forest[,1]: emailID
-  ## forest[,2]: threadID
-  ## forest[,3]: author
-  ## forest[,4]: subject
-  ## forest[,5]: content
-
   ## Replace NA entries for the author with an explicit "NA" string
-  forest[,3][is.na(forest[,3])] <- "NA"
+  forest[, "author"][is.na(forest[,"author"])] <- "NA"
 
-  for (i in unique(forest[,2])){
+  for (i in unique(forest[,"threadID"])){
     ## Select all messages in thread i
-    thread <- forest[forest[,2]==i,]
+    thread <- forest[forest[,"threadID"]==i,]
     questioner <- matrix(thread,ncol=5)[1,3]
 
     if (length(thread) > 5) {

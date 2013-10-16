@@ -72,12 +72,11 @@ make.forest <- function(corp, encoding="UTF-8") {
   forest <- cbind(mail.ids, thread.ids, authors,
                   headings, Content)
 
-  Encoding(forest[,3:5]) <- encoding
   colnames(forest) <- c("emailID", "threadID", "author", "subject",
                         "content")
+  Encoding(forest[,c("author", "subject", "content")]) <- encoding
 
-  authors <- do.normalise(forest[,3])
-  forest <- cbind(forest[,1:2], author=authors, forest[,4:5])
+  forest[,"author"] <- do.normalise(forest[,"author"])
 
   return(forest)
 }
