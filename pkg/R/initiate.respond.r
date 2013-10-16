@@ -13,14 +13,17 @@ initiate.respond <- function(forest){
   ## Replace NA entries for the author with an explicit "NA" string
   forest[, "author"][is.na(forest[,"author"])] <- "NA"
 
-  for (i in unique(forest[,"threadID"])){
+  author.idx <- which(colnames(forest) == "author")
+  for (i in unique(forest[,"threadID"])) {
     ## Select all messages in thread i
     thread <- forest[forest[,"threadID"]==i,]
     ## The author of the first message in the thread is identified as
     ## thread starter
-    questioner <- thread[,"author"][1]
+    ## NOTE: We cannot use textual labels to select the author column
+    ## since they are not preserved when there is only a single result row
+    questioner <- thread[author.idx][1]
 
-    if (dim(thread)[1] > 1) {
+    if (!is.null(dim(thread)) && dim(thread)[1] > 1) {
       ## The thread is composed of more than one message
       ## First row gives initiating message, following rows describe
       ## responses
