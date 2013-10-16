@@ -8,7 +8,7 @@
 
 initiate.respond <- function(forest){
   ir <- data.frame(name=unique(na.omit(unique(forest[,"author"]))),
-                   initiations=0, responses=0)
+                   initiations=0, responses=0, responses.received=0)
   forest <- ordermatrix(forest, by="threadID")
 
   author.idx <- which(colnames(forest) == "author")
@@ -24,7 +24,6 @@ initiate.respond <- function(forest){
     } else {
       initiator <- thread[1, author.idx]
     }
-
 
     if (!is.null(dim(thread)) && dim(thread)[1] > 1) {
       ## The thread is composed of more than one message
@@ -42,7 +41,18 @@ initiate.respond <- function(forest){
         stop("Internal error: Thread initiator not found in author list!")
       }
 
+      idx <- which(ir$name==initiator)
+      if (length(idx) != 1) {
+        stop("Internal error: Thread initiator not found in author list!")
+      }
+
       ir$initiations[idx] <- as.numeric(ir$initiations[idx]) + 1
+
+      ## Note how many responses the thread intiator received
+      ## in responses.received
+      if (!is.null(answerers)) {
+        ir$responses.received[idx] <- ir$responses.received[idx] + length(answerers)
+      }
     }
 
     ## For all response messages in the thread, give one response credit
