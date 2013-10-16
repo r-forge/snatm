@@ -7,11 +7,9 @@
  #third column contains number of responses
 
 initiate.respond <- function(forest){
-  authors <- c()
-  forest <- ordermatrix(forest,by=2)
-
-  ## Replace NA entries for the author with an explicit "NA" string
-  forest[, "author"][is.na(forest[,"author"])] <- "NA"
+  ir <- data.frame(name=unique(na.omit(unique(forest[,"author"]))),
+                   initiations=0, responses=0)
+  forest <- ordermatrix(forest, by="threadID")
 
   author.idx <- which(colnames(forest) == "author")
   for (i in unique(forest[,"threadID"])) {
@@ -21,7 +19,12 @@ initiate.respond <- function(forest){
     ## thread starter
     ## NOTE: We cannot use textual labels to select the author column
     ## since they are not preserved when there is only a single result row
-    initiator <- thread[author.idx][1]
+    if (is.null(dim(thread))) {
+      initiator <- thread[author.idx]
+    } else {
+      initiator <- thread[1, author.idx]
+    }
+
 
     if (!is.null(dim(thread)) && dim(thread)[1] > 1) {
       ## The thread is composed of more than one message
@@ -29,24 +32,34 @@ initiate.respond <- function(forest){
       ## responses
       answerers <- thread[2:dim(thread)[1], "author"]
     } else {
-      answerers <- c()             #
-    }                              #
+      answerers <- NULL
+    }
 
-    if (!is.element(initiator,authors[,1])){
-      authors <- rbind(authors,c(initiator,1,0))
-    }
-    if (is.element(initiator,authors[,1])){
-      authors[authors[,1]==initiator,2] <- as.numeric(authors[authors[,1]==initiator,2])+1
-    }
-    for (j in seq_along(answerers)){
-      if (!is.element(answerers[j],authors[,1])){
-        authors <- rbind(authors,c(answerers[j],0,1))
+    ## Credit one more thread initiation to the current initiator
+    if (!is.na(initiator)) {
+      idx <- which(ir$name==initiator)
+      if (length(idx) != 1) {
+        stop("Internal error: Thread initiator not found in author list!")
       }
-      if (is.element(answerers[j],authors[,1])){
-        authors[authors[,1]==answerers[j],3] <- as.numeric(authors[authors[,1]==answerers[j],3])+1
+
+      ir$initiations[idx] <- as.numeric(ir$initiations[idx]) + 1
+    }
+
+    ## For all response messages in the thread, give one response credit
+    ## to the respective author
+    for (answerer in answerers) {
+      if (is.na(answerer))
+        next
+
+      idx <- which(ir$name==answerer)
+      if (length(idx) != 1) {
+        stop("Internal error: Thread replyer not found in author list!")
       }
+
+      ir$responses[idx] <- as.numeric(ir$responses[idx]) + 1
     }
   }
-  authors
+
+  return(ir)
 }
 #a <- ans.quest(forest_corrected)
