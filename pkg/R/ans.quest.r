@@ -9,16 +9,29 @@
 ans.quest <- function(forest){
   authors <- c()
   forest <- ordermatrix(forest,by=2)
+
+  ## forest[,1]: emailID
+  ## forest[,2]: threadID
+  ## forest[,3]: author
+  ## forest[,4]: subject
+  ## forest[,5]: content
+
+  ## Replace NA entries for the author with an explicit "NA" string
   forest[,3][is.na(forest[,3])] <- "NA"
+
   for (i in unique(forest[,2])){
+    ## Select all messages in thread i
     thread <- forest[forest[,2]==i,]
     questioner <- matrix(thread,ncol=5)[1,3]
-    if (length(thread)>5){
+
+    if (length(thread) > 5) {
+      ## First row gives initiating message, following rows describe
+      ## responses
       answerers <- thread[2:dim(thread)[1],3]
-    }
-    if (length(thread)<=5){       #
+    } else {
       answerers <- c()             #
     }                              #
+
     if (!is.element(questioner,authors[,1])){
       authors <- rbind(authors,c(questioner,1,0))
     }
