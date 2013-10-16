@@ -1,3 +1,20 @@
+## This file is part of snatm. snatm is free software: you can redistribute it
+## and/or modify it under the terms of the GNU General Public License as
+## published by the Free Software Foundation, either version 2 of the License,
+## or (at your option) any later version.
+##
+## snatm is distributed in the hope that it will be useful,
+## but WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with Foobar.  If not, see <http://www.gnu.org/licenses/>.
+##
+## Copyright 2011 by Angela Bohn <angela.bohn@gmail.com>
+## Copyright 2013 by Siemens AG, Wolfgang Mauerer <wolfgang.mauerer@siemens.com>
+## All Rights Reserved.
+
 gen.corpus <- function (ml, repo.path="./", suffix=".txt", outdir=NULL,
                         marks=character(0), encoding="UTF-8", preprocess=NULL,
                         postprocess=NULL)
@@ -6,13 +23,16 @@ gen.corpus <- function (ml, repo.path="./", suffix=".txt", outdir=NULL,
   ## Skip the conversion step if the result directory already
   ## exists. TODO: We need some more intelligent algorithm to deal
   ## with incremental updates.
+  timestamp("Starting mbox conversion")
   if (!file.exists(ml.base)) {
     tm.plugin.mail::convert_mbox_eml(paste(ml.base, suffix, sep = ""),
                                      paste(ml.base, "/", sep = ""))
   }
+  timestamp("mbox conversion finished, starting corpus generation")
   corp <- tm::Corpus(DirSource(ml.base, encoding=encoding),
                      readerControl = list(reader=readMail(DateFormat = "%a, %d %b %Y %H:%M:%S")))
-
+  timestamp("corpus generation finished!")
+  
   if (!is.null(preprocess)) {
     corp <- preprocess(corp)
   }
