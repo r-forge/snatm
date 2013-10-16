@@ -29,8 +29,6 @@ normalizeauthors <- function(authors){
   a <- gsub(pattern=",? ?Dr\\.",x=a,replacement="")
   a <- gsub(pattern=",? ?\\(?Mag\\.\\)? ?",x=a,replacement="")
   a <- gsub(pattern=",? ?\\(?Ph\\.?D\\.?\\)?",x=a,replacement="")
-  # discard numbers (some user names consist only of numbers, therefore delete max. 2 digits)
-  a <- sub(pattern="[[:digit:]]{1,2}",x=a,replacement="")
   # discard punctuation in \"Name\"
   a <- gsub(pattern='"',x=a,replacement="")
   # discard middle name
