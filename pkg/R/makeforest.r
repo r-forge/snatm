@@ -44,7 +44,7 @@ gen.corpus <- function (ml, repo.path="./", suffix=".txt", outdir=NULL,
 }
 
 
-make.forest <- function(corp, encoding="UTF-8") {
+make.forest <- function(corp, normalise.FUN=NULL, encoding="UTF-8") {
   thread.ids <- threads(corp)$ThreadID
 
   ## If there are threads without IDs, something is wrong with the
@@ -66,7 +66,7 @@ make.forest <- function(corp, encoding="UTF-8") {
   headings <- sapply(corp, function (x) { Heading(x)[1] } )
   attributes(headings) <- NULL
 
-  ## The forst collects unique (numeric) identifiers for every mail
+  ## The forest collects unique (numeric) identifiers for every mail
   ## and the thread it is associated with, together with author, subject line
   ## and content of each mail
   forest <- cbind(mail.ids, thread.ids, authors,
@@ -76,7 +76,17 @@ make.forest <- function(corp, encoding="UTF-8") {
                         "content")
   Encoding(forest[,c("author", "subject", "content")]) <- encoding
 
-  forest[,"author"] <- do.normalise(forest[,"author"])
+  ## Normalisation may transform the author names in arbitrary ways,
+  ## for instance by assigning numerical IDs to them. Preserve
+  ## the original names in author.orig.
+  if (!is.null(normalise.FUN)) {
+    authors.normalised <- normalise.FUN(forest[,"author"])
+    forest <- cbind(forest, author.orig=forest[,"author"])
+    forest[,"author"] <- authors.normalised
+  } else {
+    forest <- cbind(forest, author.orig=forest[,"author"])
+  }
+
 
   return(forest)
 }
