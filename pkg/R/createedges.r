@@ -3,21 +3,25 @@ function (forest, subjectfilter = NULL, contentfilter = NULL,
     lv = "nom") 
 {
     edgelist <- c()
+    if (is.null(dim(forest))) {
+      stop("Pathological case: Forest with a single message; not handling this case")
+    }
+    threadID.idx <- which(colnames(forest)=="threadID")
+    author.idx <- which(colnames(forest)=="author")
+    subject.idx <- which(colnames(forest)=="subject")
+    content.idx <- which(colnames(forest)=="content")
+    ncol=dim(forest)[2]
+
     if (length(subjectfilter) > 0) {
-        forest <- forest[grep(forest[, "subject"], pattern = subjectfilter),
-            ]
+        forest <- forest[grep(forest[, subject.idx], pattern = subjectfilter,
+                              fixed=TRUE), ]
     }
     if (length(contentfilter) > 0) {
-        forest <- forest[grep(forest[, "content"], pattern = contentfilter),
-            ]
+        forest <- forest[grep(forest[, content.idx], pattern = contentfilter,
+                         fixed=TRUE), ]
     }
     if (length(forest) > 0) {
-        threadID.idx <- which(colnames(forest)=="threadID")
-        author.idx <- which(colnames(forest)=="author")
-        subject.idx <- which(colnames(forest)=="subject")
-        content.idx <- which(colnames(forest)=="content")
-
-        forest <- matrix(forest, ncol=dim(forest)[2])
+        forest <- matrix(forest, ncol=ncol)
         for (i in unique(as.numeric(forest[,threadID.idx]))) {
             thread <- forest[as.numeric(forest[,threadID.idx]) == i, ]
             if (is.null(dim(thread))) {
