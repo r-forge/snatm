@@ -44,9 +44,15 @@ function (terms, apply.to, data.path, max.terms=20)
       value <- sna::degree(net, cmode = "outdegree")
       value <- cbind(authors, value)
       value <- ordermatrix(value, 2)
+
       value <- cbind(value[, 1], seq(1:dim(value)[1])/dim(value)[1])
       edgelist <- rbind(edgelist, cbind(value[, 1], terms[i], value[, 2]))
     }
 
+    ## Provide textual indices
+    ## edgelist[,1] = author
+    ## edgelist[,2] = term
+    ## edgelist[,3] = outdegree
+    dimnames(edgelist) <- list(NULL, c("author", "term", "outdegree"))
     return (list(edgelist=edgelist, sizes=sizes))
 }
