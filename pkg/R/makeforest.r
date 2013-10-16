@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 makeforest <- 
 function (month)
 {

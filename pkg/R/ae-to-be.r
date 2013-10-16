@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 protectwords <- function(txt){
   txt <- unprotectwords(txt)
   txt <- gsub(txt,pattern="(natalipr|nobelpr)(ize)",replacement="\\1xXx\\2")

@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 library("sna")
 centrality.edgelist <- 
 function (terms, apply.to = c("subjects", "content"), list = c("rhelp", 

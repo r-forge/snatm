@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 # questioner vs. answerer
 
 # Arguments: forest_corrected

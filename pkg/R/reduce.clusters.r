@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 reduce.clusters <- function(clusters){
   for (i in seq_along(clusters)){
     match <- clusters[[i]][1]

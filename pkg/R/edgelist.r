@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 edgelist <- function (adjmatrix) 
 {
     if (!is.matrix(adjmatrix)) {

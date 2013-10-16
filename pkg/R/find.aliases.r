@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 normalizeauthors <- function(authors){
   # discard bounces
   a <- gsub(x=authors,pattern="[[:print:]]*r-help-bounces[[:print:]]*",replacement="bounce")

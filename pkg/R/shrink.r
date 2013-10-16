@@ -1,5 +1,3 @@
-### Copyright (C) Angela Bohn
-
 shrink <- function(network,by=c("row","column")
                   ,keep=NULL # numeric vector
                   ,values=c("sum","min","max")){ # how to aggregate values
