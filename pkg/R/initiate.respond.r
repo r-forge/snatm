@@ -20,7 +20,8 @@ initiate.respond <- function(forest){
     ## thread starter
     questioner <- thread[,"author"][1]
 
-    if (length(thread) > 5) {
+    if (dim(thread)[1] > 1) {
+      ## The thread is composed of more than one message
       ## First row gives initiating message, following rows describe
       ## responses
       answerers <- thread[2:dim(thread)[1], "author"]
