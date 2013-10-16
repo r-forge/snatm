@@ -18,8 +18,7 @@ function (forest, subjectfilter = NULL, contentfilter = NULL,
         content.idx <- which(colnames(forest)=="content")
 
         forest <- matrix(forest, ncol=dim(forest)[2])
-        for (i in min(as.numeric(forest[,threadID.idx])):max(as.numeric(forest[,
-            threadID.idx]))) {
+        for (i in unique(as.numeric(forest[,threadID.idx]))) {
             thread <- forest[as.numeric(forest[,threadID.idx]) == i, ]
             if (is.null(dim(thread))) {
                 ## Exactly one contribution in the thread, author thread
