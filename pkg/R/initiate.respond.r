@@ -1,12 +1,12 @@
-# questioner vs. answerer
+# Message initiation vs. response calculations
 
 # Arguments: forest_corrected
 # Value: matrix with dimension n x 3 where n is the number of authors in forest
 # firest column contains author name
-# second column contains number of questions
-#third column contains number of answers
+# second column contains number of initiations
+ #third column contains number of responses
 
-ans.quest <- function(forest){
+initiate.respond <- function(forest){
   authors <- c()
   forest <- ordermatrix(forest,by=2)
 
