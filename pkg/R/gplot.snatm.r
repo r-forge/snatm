@@ -113,10 +113,10 @@ function (dat, g = 1, gmode = "digraph", diag = FALSE, label = c(1:dim(dat)[2]),
     tl <- d.raw * dist
     tl.max <- max(tl)
     for (i in (1:n)[use]) for (j in (1:n)[use]) if (d[i, j]) {
-        px0 <- c(px0, as.real(x[i]))
-        py0 <- c(py0, as.real(y[i]))
-        px1 <- c(px1, as.real(x[j]))
-        py1 <- c(py1, as.real(y[j]))
+        px0 <- c(px0, as.double(x[i]))
+        py0 <- c(py0, as.double(y[i]))
+        px1 <- c(px1, as.double(x[j]))
+        py1 <- c(py1, as.double(y[j]))
         e.toff <- c(e.toff, vertex.radius[i])
         e.hoff <- c(e.hoff, vertex.radius[j])
         e.col <- c(e.col, edge.col[i, j])
