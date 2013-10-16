@@ -15,6 +15,14 @@
 ## Copyright 2013 by Siemens AG, Wolfgang Mauerer <wolfgang.mauerer@siemens.com>
 ## All Rights Reserved.
 
+## Modified version of tm::removeWords that sets the useBytes=TRUE flag
+## in gsub and therefore avoids issues with invalid (but correctly encoded)
+## UTF-8 strings like rawToChar(as.raw(c(0xf5, 0x93, 0xb3, 0x84)))
+removeWords.useBytes <- function(x, words) {
+  gsub(sprintf("(*UCP)\\b(%s)\\b", paste(words, collapse = "|")), "", x,
+       perl = TRUE, useBytes=TRUE)
+}
+
 gen.corpus <- function (ml, repo.path="./", suffix=".txt", outdir=NULL,
                         marks=character(0), encoding="UTF-8", preprocess=NULL,
                         postprocess=NULL)
@@ -45,7 +53,7 @@ gen.corpus <- function (ml, repo.path="./", suffix=".txt", outdir=NULL,
   ## NOTE: It's important to apply tolower before stopword removal;
   ## otherwise, phrases like "I'm" won't be removed properly
   corp <- tm_map(corp, tolower)
-  corp <- tm_map(corp, tm::removeWords, stopwords("english"))
+  corp <- tm_map(corp, removeWords.useBytes, stopwords("english"))
   corp <- tm_map(corp, tm::removeNumbers)
   corp <- tm_map(corp, tm::removePunctuation)
   corp <- tm_map(corp, tm::stripWhitespace)
