@@ -48,5 +48,5 @@ function (terms, apply.to, data.path, max.terms=20)
       edgelist <- rbind(edgelist, cbind(value[, 1], terms[i], value[, 2]))
     }
 
-    return (list(edgelist, sizes))
+    return (list(edgelist=edgelist, sizes=sizes))
 }
