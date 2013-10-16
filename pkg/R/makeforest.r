@@ -28,16 +28,22 @@ gen.corpus <- function (ml, repo.path="./", suffix=".txt", outdir=NULL,
                         postprocess=NULL)
 {
   ml.base <- file.path(repo.path, ml)
+  ml.filename <- paste(ml.base, suffix, sep = "")
   ## Skip the conversion step if the result directory already
   ## exists. TODO: We need some more intelligent algorithm to deal
   ## with incremental updates.
-  timestamp("Starting mbox conversion")
-  if (!file.exists(ml.base)) {
-    tm.plugin.mail::convert_mbox_eml(paste(ml.base, suffix, sep = ""),
-                                     paste(ml.base, "/", sep = ""))
+  if (!exists("MBoxSource")) {
+    timestamp("Starting mbox conversion")
+    if (!file.exists(ml.base)) {
+      tm.plugin.mail::convert_mbox_eml(ml.filename,
+                                       paste(ml.base, "/", sep = ""))
+    }
+    mailbox.source <- DirSource(ml.base, encoding=encoding)
+  } else {
+    mailbox.source <- MBoxSource(ml.filename, encoding=encoding)
   }
-  timestamp("mbox conversion finished, starting corpus generation")
-  corp <- tm::Corpus(DirSource(ml.base, encoding=encoding),
+  timestamp("starting corpus generation")
+  corp <- tm::Corpus(mailbox.source,
                      readerControl = list(reader=readMail(DateFormat = "%a, %d %b %Y %H:%M:%S")))
   timestamp("corpus generation finished!")
   
