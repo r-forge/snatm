@@ -16,12 +16,14 @@ initiate.respond <- function(forest){
   for (i in unique(forest[,"threadID"])){
     ## Select all messages in thread i
     thread <- forest[forest[,"threadID"]==i,]
-    questioner <- matrix(thread,ncol=5)[1,3]
+    ## The author of the first message in the thread is identified as
+    ## thread starter
+    questioner <- thread[,"author"][1]
 
     if (length(thread) > 5) {
       ## First row gives initiating message, following rows describe
       ## responses
-      answerers <- thread[2:dim(thread)[1],3]
+      answerers <- thread[2:dim(thread)[1], "author"]
     } else {
       answerers <- c()             #
     }                              #
