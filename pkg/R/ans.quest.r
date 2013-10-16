@@ -10,7 +10,7 @@ ans.quest <- function(forest){
   authors <- c()
   forest <- ordermatrix(forest,by=2)
   forest[,3][is.na(forest[,3])] <- "NA"
-  for (i in seq_along(unique(forest[,2]))){
+  for (i in unique(forest[,2])){
     thread <- forest[forest[,2]==i,]
     questioner <- matrix(thread,ncol=5)[1,3]
     if (length(thread)>5){
