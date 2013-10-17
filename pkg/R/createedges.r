@@ -4,7 +4,9 @@ function (forest, subjectfilter = NULL, contentfilter = NULL,
 {
     edgelist <- c()
     if (is.null(dim(forest))) {
-      stop("Pathological case: Forest with a single message; not handling this case")
+      cat("Pathological case: Forest with a single message; not handling ",
+          "this case\n")
+      return(NA)
     }
     threadID.idx <- which(colnames(forest)=="threadID")
     author.idx <- which(colnames(forest)=="author")
